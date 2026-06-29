@@ -1,8 +1,8 @@
 # Scoville Anti-AI-Coding-Slop
 
-Anti-AI-slop quality gate for AI/agent-assisted engineering. Apply it while editing, reviewing, refactoring, testing, or planning code, so scope control, correctness, minimal diffs, source-of-truth discipline, validation, reviewability, and safe version-control hygiene stay explicit.
+Sharpens the output. Turns down the slop.
 
-Sharpens the ouput of AI-assisted coding by adding heat where weak scope, duplicated ownership, or unproven changes would otherwise slip through.
+Anti-AI-slop quality gate for AI/agent-assisted engineering. Apply it while editing, reviewing, refactoring, testing, or planning code, so scope control, correctness, minimal diffs, source-of-truth discipline, validation, reviewability, and safe version-control hygiene stay explicit.
 
 ## Install
 
