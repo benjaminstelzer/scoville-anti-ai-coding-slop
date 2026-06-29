@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scoville Anti AI Coding Slop"
+  short_description: "Quality gate for agent-assisted code"
+  default_prompt: "Use $scoville-anti-ai-coding-slop to keep an engineering change scoped, correct, validated, and reviewable."
