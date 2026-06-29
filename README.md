@@ -33,6 +33,20 @@ mkdir -p ~/.agents/skills
 git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop ~/.agents/skills/scoville-anti-ai-coding-slop
 ```
 
+GitHub Copilot project install:
+
+```bash
+mkdir -p .github/skills
+git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop .github/skills/scoville-anti-ai-coding-slop
+```
+
+GitHub Copilot personal install:
+
+```bash
+mkdir -p ~/.copilot/skills
+git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop ~/.copilot/skills/scoville-anti-ai-coding-slop
+```
+
 Claude Code project install:
 
 ```bash
@@ -76,8 +90,6 @@ The skill does not replace local instructions, architecture docs, CI, security p
 
 The skill synthesizes the following sources:
 
-- [Agent Skills specification](https://agentskills.io/specification) and [best practices](https://agentskills.io/skill-creation/best-practices): folder shape, required `SKILL.md`, concise instructions, progressive disclosure, and validation loops.
-- [GitHub Docs on agent skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills): project and personal skill directory conventions such as `.agents/skills`, exact `SKILL.md` naming, lowercase hyphenated folder names, and YAML frontmatter.
 - [OpenAI coding-agent best practices](https://developers.openai.com/codex/learn/best-practices): goal/context/constraints/done-when prompts, planning before complex work, tight permissions, focused checks, and diff review.
 - [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/llm-top-10/): prompt injection, sensitive-information disclosure, supply-chain risk, improper output handling, and excessive agency.
 - [OWASP LLM01 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) and [LLM06 Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/): least privilege, human approval for high-risk actions, untrusted external content, and deterministic safeguards.
