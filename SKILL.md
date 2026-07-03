@@ -58,13 +58,18 @@ Before writing code, answer: **which existing function/module/config already own
 - Search (grep) for existing names before creating anything new. Match local naming, layering, error handling, and test style.
 - Never create a second pathway for the same behavior, validation, config, schema, or write.
 - Never invent an API, function, flag, env var, or schema field. If you cannot find it in the code or docs, it does not exist — check the source of truth or ask.
+- Never edit a file you have not read in this session. Editing from assumption is how existing code gets silently destroyed.
+- If the request contradicts the code, the docs, or itself: stop and ask ONE specific question. Do not silently pick an interpretation.
 
 ## Step 4: Edit — hard limits
 
+- Prefer the shortest correct solution. When two approaches both work, take the one with less code — every added line is a line someone must review and maintain, and a place for bugs to live. Short means fewer moving parts (fewer functions, files, branches, dependencies), not code golf: keep names and logic readable.
 - Touch only files listed in the ACTIVE milestone. Different file needed? Add it to the milestone plus one DECISIONS line first.
 - Side issue discovered? One line in DECISIONS, then continue the ACTIVE milestone. Do not fix it now.
 - **2-strike rule:** if 2 consecutive edit+validate loops fail to advance the ACTIVE milestone — stop patching. Re-read the source of truth, shrink or replace the milestone, log it in DECISIONS, continue from the revised plan.
 - Ship the simplest correct slice first, then harden. No speculative edge-case handling before the core behavior works.
+- Edit surgically: change the lines that need changing. Never rewrite a whole file when a targeted edit works — wholesale rewrites silently drop code.
+- Never add a new dependency (library, package, tool) without explicit user approval. The standard library or existing project dependencies almost always suffice.
 - Do not touch generated files, lockfiles, migrations, vendored code, or release artifacts unless the task requires it.
 
 ### Banned patterns (concrete)
@@ -81,6 +86,9 @@ Before writing code, answer: **which existing function/module/config already own
 
 A validation result = the exact command you ran + its actual output. Nothing else counts.
 
+For bug fixes, work fail-first: write or run the check that FAILS on the current code, then fix until it passes. A fix without a previously failing check proves nothing.
+When a check fails with multiple errors, fix the FIRST error only, re-run, repeat — later errors are usually consequences of the first.
+
 1. First the **narrowest** check that proves the ACTIVE milestone (single test, one command, one request).
 2. Then broader checks (lint/typecheck/full tests/build) if repo, CI, or user requires them.
 3. Check fails → fix it now. "Note it for later" only if the user explicitly accepts the risk.
@@ -94,6 +102,7 @@ Answer every question. Any "no" (or "yes" on the last two) = not done:
 
 - [ ] Every milestone completed or explicitly dropped with a DECISIONS line?
 - [ ] Every changed file necessary for the GOAL?
+- [ ] New or changed behavior covered by a test, if the repo has a test suite? (For bug fixes: a test that fails on the old code.)
 - [ ] Every validation claim backed by pasted command output — or explicitly marked `NOT RUN: <reason>`? Claiming "tests pass" without having executed them is the worst failure this harness exists to prevent.
 - [ ] Debug prints, TODOs, dead code, commented-out code removed?
 - [ ] Any duplicate pathway created? (must be no)
@@ -119,11 +128,8 @@ Keep it short. No logs unless they prove a blocker or a result.
 
 ## Version control
 
-The user's or repository's stated workflow always wins — if it says "commit after every milestone", do that.
-Only where no workflow is specified, apply these defaults:
-- Do not initialize version control in a repo that has none.
-- Commit only when asked. A commit = one validated coherent slice, focused message.
-- No destructive or publishing operations (`push`, `rebase`, `reset`, `stash`, force ops, branch switching, releases) without an explicit request.
+This skill sets NO version-control workflow. When to commit, branch names, message style: follow the repository's rules (AGENTS.md, CLAUDE.md, CONTRIBUTING) or the user's instructions; absent both, commit only when asked.
+One safety rule always applies: no destructive or publishing operations (`push`, `rebase`, `reset`, `stash`, force ops, discarding changes, `init`, releases) unless the user or the repository's rules explicitly call for them.
 
 ## Safety
 
