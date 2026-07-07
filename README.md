@@ -2,7 +2,7 @@
 
 Sharpens the output. Turns down the slop.
 
-Anti-AI-slop quality gate for AI/agent-assisted engineering. Apply it while editing, reviewing, refactoring, testing, or planning code, so scope control, correctness, minimal diffs, source-of-truth discipline, validation, reviewability, and safe version-control hygiene stay explicit.
+Anti-AI-slop quality gate for AI/agent-assisted engineering. Apply it while editing, reviewing, refactoring, testing, or planning code, so scope control, correctness, minimal diffs, source-of-truth discipline, validation, reviewability, structural quality, and safe version-control hygiene stay explicit.
 
 ## Install
 
@@ -75,6 +75,14 @@ Then restart or refresh the agent and confirm `scoville-anti-ai-coding-slop` is 
 - one canonical owner and one source of truth
 - smallest useful diff
 - no parallel pathways or speculative abstractions
+- explicit structural quality gate, not just green tests
+- hard guard against accidental giant-file growth
+- code-judo question before adding logic to busy flows
+- no misleading wrappers or semantic pass-through layers
+- no lossy boundaries where already-computed semantics disappear
+- atomic state, cursor, checkpoint, cache, and progress publication
+- failure-mode validation for architecture-sensitive changes
+- holistic branch-diff review when local slices can accumulate structural debt
 - least privilege and prompt-injection resistance
 - validation evidence before completion
 - independent final review for security, edge cases, architecture drift, and diff quality
@@ -86,11 +94,14 @@ Scoville is deliberately small. Agent skills use progressive disclosure: the age
 
 The skill does not replace local instructions, architecture docs, CI, security policy, release workflow, or human review. It fills gaps where local rules are silent.
 
+The updated version keeps Scoville's original bias toward the smallest safe validated slice, but adds a second bar: the slice must also be structurally acceptable. Passing tests is not enough when a change grows central files, adds special-case branching, creates misleading wrappers, drops semantics at boundaries, or publishes progress before durable work succeeds.
+
 ## Sources and inspirations
 
 The skill synthesizes the following sources:
 
 - [OpenAI coding-agent best practices](https://developers.openai.com/codex/learn/best-practices): goal/context/constraints/done-when prompts, planning before complex work, tight permissions, focused checks, and diff review.
+- [Cursor Thermo-Nuclear Code Quality Review Skill](https://github.com/cursor/plugins/blob/main/cursor-team-kit/skills/thermo-nuclear-code-quality-review/SKILL.md): strict maintainability review, code-judo simplification, 1k-line guard, anti-spaghetti review, canonical ownership, boundary cleanliness, wrapper skepticism, atomicity concerns, and branch-wide structural approval.
 - [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/llm-top-10/): prompt injection, sensitive-information disclosure, supply-chain risk, improper output handling, and excessive agency.
 - [OWASP LLM01 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) and [LLM06 Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/): least privilege, human approval for high-risk actions, untrusted external content, and deterministic safeguards.
 - [Andrej Karpathy on vibe coding](https://x.com/karpathy/status/1886192184808149383): natural-language software construction is powerful, but production engineering still needs scope, review, testing, taste, and ownership.
