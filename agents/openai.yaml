@@ -1,4 +1,4 @@
 interface:
-  display_name: "Scoville Anti AI Coding Slop"
-  short_description: "Quality gate for agent-assisted code"
-  default_prompt: "Use $scoville-anti-ai-coding-slop to keep an engineering change scoped, correct, validated, and reviewable."
+  display_name: "Scoville Engineering Gate"
+  short_description: "Structural quality gate for engineering work"
+  default_prompt: "Use $scoville-anti-ai-coding-slop to execute or review an engineering change with canonical ownership, structural checks, and real validation evidence."
