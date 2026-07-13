@@ -2,93 +2,41 @@
 
 Sharpens the output. Turns down the slop.
 
-Adaptive anti-AI-slop quality gate for AI/agent-assisted engineering. It inherits the user's and repository's workflow concern by concern, then supplies compact, risk-proportionate defaults only where the project is silent.
+Scoville is an adaptive structural execution and review gate for AI/agent-assisted engineering. It targets both unvalidated work and "validated structural accumulation": changes that pass tests while duplicating ownership, losing boundary semantics, or publishing progress before the represented work is durable.
+
+The skill inherits the user's and repository's workflow concern by concern, supplies compact risk-proportionate defaults only where the project is silent, and requires focused evidence plus final-diff review before completion.
 
 ## Install
 
-This repository contains one Agent Skill. Its root is the skill directory:
+Usually, let your coding agent install the skill. Send it this prompt:
 
 ```text
-scoville-anti-ai-coding-slop/
-├── SKILL.md
-├── LICENSE
-├── README.md
-└── agents/
-    └── openai.yaml
+Install this Agent Skill from GitHub and make it available for my coding work:
+https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop
 ```
 
-The skill name listed in `SKILL.md` matches the directory and repository name. The file follows the standard `SKILL.md` shape: YAML frontmatter with `name` and `description`, followed by Markdown instructions. `agents/openai.yaml` is optional Codex UI metadata.
+Add "for all my projects" or "only for this project" when the installation scope matters. The agent should choose its current supported skills directory, install the repository under the unchanged name `scoville-anti-ai-coding-slop`, and refresh its skill list.
 
-Codex project install:
-
-```bash
-mkdir -p .agents/skills
-git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop .agents/skills/scoville-anti-ai-coding-slop
-```
-
-Codex personal install:
-
-```bash
-mkdir -p ~/.agents/skills
-git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop ~/.agents/skills/scoville-anti-ai-coding-slop
-```
-
-GitHub Copilot project install:
-
-```bash
-mkdir -p .github/skills
-git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop .github/skills/scoville-anti-ai-coding-slop
-```
-
-GitHub Copilot personal install:
-
-```bash
-mkdir -p ~/.copilot/skills
-git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop ~/.copilot/skills/scoville-anti-ai-coding-slop
-```
-
-Claude Code project install:
-
-```bash
-mkdir -p .claude/skills
-git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop .claude/skills/scoville-anti-ai-coding-slop
-```
-
-Claude Code personal install:
-
-```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop ~/.claude/skills/scoville-anti-ai-coding-slop
-```
-
-For compatible agents that use a different skills directory, clone or copy the repository folder so the final path is:
+Only if your agent cannot install skills itself, clone or copy the repository manually so the final path is:
 
 ```text
 <skills-dir>/scoville-anti-ai-coding-slop/SKILL.md
 ```
 
-Then restart or refresh the agent and confirm `scoville-anti-ai-coding-slop` is available.
+Then restart or refresh the agent and confirm that `scoville-anti-ai-coding-slop` is available. Consult the agent's current documentation for its skills directory; paths differ between agents and may change over time.
 
 ## What it enforces
 
-- user and project workflow before skill defaults
-- continuous execution across planned work items until a real stop condition
-- one canonical owner and one source of truth
-- the fewest behavior-complete work items
-- no parallel pathways or speculative abstractions
-- structural quality beyond green tests
-- file size as a review signal rather than an automatic split
-- local simplification only when it supports the requested result
-- no misleading wrappers or semantic pass-through layers
-- no lossy boundaries where already-computed semantics disappear
-- atomic state, cursor, checkpoint, cache, and progress publication
-- fail-first regression proof for defects and invariant hardening
-- focused validation without manufacturing tests for trivial or exploratory work
-- optional, on-demand decision and implementation-rationale history
-- separate fallback paths for decisions and rationale when the project has none
-- least privilege and prompt-injection resistance
-- validation evidence before completion
-- version-control hygiene only when version control is present or explicitly requested
+- explicit user and project workflow, resolved concern by concern, before skill defaults
+- independent size and risk classification instead of one heavyweight process for every change
+- safety and source-of-truth correctness ahead of local convenience or a smaller diff
+- one canonical owner, preserved boundary semantics, and durable work before progress or publication
+- the fewest meaningful behavior-complete work items, with one active item until a real stop condition
+- structural checks for misleading wrappers, silent fallbacks, duplicate pathways, responsibility growth, speculative abstractions, mode creep, implementation-mirroring tests, and scaffolding presented as completion
+- focused validation without manufacturing tests; fail-first is the default for defects and invariant hardening
+- actual validation evidence, complete final-diff inspection, and explicit residual risk before completion
+- optional decision and implementation-rationale history, searched only when current sources leave a concrete need
+- scoped version-control and external actions that follow repository rules and explicit authorization
 
 ## Design
 
