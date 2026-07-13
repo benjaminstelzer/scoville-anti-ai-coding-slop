@@ -25,13 +25,16 @@
 - Reworked the README with concrete failure examples, installation verification,
   context-cost guidance, an accurate repository inventory, and the MIT license
   link.
+- Refined the README prose, replaced em-dash punctuation, and corrected the
+  classification, context-cost, and fallback-record details.
 
 **Commits:** [`596b76b`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/596b76bfa3856dfe226b5b8d5bb61e0f84c86ca4),
 [`7706e9d`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/7706e9d6d854dbd59c3ed11a4f59015db4ddd6eb),
 [`01b4269`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/01b42691c7e743ea685b00af293d2f0970d472e0),
 [`551f790`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/551f7900577644422dcb65e9ef038d3426769113),
 [`c4a96ad`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/c4a96adcfea83c949ba71b9a7c8f18894cc279d2),
-[`8818ce8`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/8818ce806caed79bb84a723ea3c0b901ecbbe727)
+[`8818ce8`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/8818ce806caed79bb84a723ea3c0b901ecbbe727),
+[`53c1c26`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/53c1c265c49c2d5bbdd28cb8a43603129e969fe9)
 
 ## 2026-07-10 — Structural execution and review gate
 
