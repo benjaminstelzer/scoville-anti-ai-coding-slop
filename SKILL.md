@@ -118,12 +118,13 @@ long-running Structural or High work.
 
 Use the project's preferred path or, when none exists, `PLAN.md` at the repository
 root. Reuse that file only when it is the active plan for the current work; never
-overwrite or delete a user- or project-owned plan. Update a Scoville-created file
-on material scope changes and item completion. Delete it after the requested work
-completes only when Scoville created it for that work and neither the user nor
-repository requires retention. Treat it as working state, never as behavioral
-source of truth or a substitute for the final report, and do not commit it unless
-the user or repository tracks plans.
+overwrite or delete a user- or project-owned plan. If the fallback path is occupied
+by an unrelated plan, use one distinct, clearly named working-plan file for the
+current task instead. Update a Scoville-created file on material scope changes and
+item completion. Delete it after the requested work completes only when Scoville
+created it for that work and neither the user nor repository requires retention.
+Treat it as working state, never as behavioral source of truth or a substitute for
+the final report, and do not commit it unless the user or repository tracks plans.
 
 After compaction or handoff, re-read applicable directives, version-control
 status, and current canonical sources before the plan. Reconcile any mismatch
@@ -239,6 +240,8 @@ the file in the final report and never create another fallback log.
 - D-YYYYMMDD-NN [accepted] `<scope>` — <decision>; why <reason>.
 - R-YYYYMMDD-NN `<scope>` — <durable rationale>; because <reason>.
 ```
+
+Append a superseding entry instead of silently rewriting semantic history.
 
 Treat decision history as provenance, not current authority. Search it only when
 current sources leave a relevant choice unexplained, and then only by ID, scope,
