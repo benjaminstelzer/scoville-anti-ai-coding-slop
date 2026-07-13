@@ -2,11 +2,42 @@
 
 Sharpens the output. Turns down the slop.
 
-Scoville is an adaptive structural execution and review gate for AI/agent-assisted engineering. It targets both unvalidated work and structural debt that can hide behind green tests: duplicate ownership, lost boundary semantics, or progress published before the represented work is durable.
+You know the pattern:
 
-The skill inherits the user's and repository's workflow concern by concern, supplies compact risk-proportionate defaults only where the project is silent, and requires focused evidence plus final-diff review before completion.
+- Your agent reports "✅ All tests pass" — but never ran them.
+- You asked for a bugfix and got 400 lines of test scaffolding around a
+  one-line change.
+- A second helper appears that duplicates one that already existed, three
+  files away.
+- The diff is green, the PR merges, and the system is a little harder to
+  understand than before.
+
+That's AI slop: motion without progress. Scoville is an Agent Skill that makes
+your coding agent prove its work, stay in scope, and keep structure honest —
+without turning every one-line edit into a process.
+
+It targets both failure directions: unvalidated work (success claims without
+evidence) and structural debt that hides behind green tests (duplicate
+ownership, lost boundary semantics, progress published before the work is
+durable). It inherits your own rules and your repository's conventions concern
+by concern, and supplies compact risk-proportionate defaults only where they
+are silent.
+
+## Why "Scoville"?
+
+The Scoville scale measures how far you can dilute a chili before the heat
+becomes undetectable. AI slop works the same way in reverse: real engineering,
+diluted with scaffolding, filler tests, and unproven claims, until no actual
+progress is detectable. This skill measures — and limits — the dilution.
+
+The ten structural failure modes carry SC numbers (SC1–SC10). Officially that
+stands for "structural concern". Unofficially, yes: the higher your diff
+scores, the more it burns on review.
 
 ## Install
+
+Works with any coding agent that supports the Agent Skills format (`SKILL.md`
+with name/description frontmatter), e.g. Claude Code and Codex.
 
 Usually, let your coding agent install the skill. Send it this prompt:
 
@@ -15,41 +46,78 @@ Install this Agent Skill from GitHub and make it available for my coding work:
 https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop
 ```
 
-Add "for all my projects" or "only for this project" when the installation scope matters. The agent should choose its current supported skills directory, install the repository under the unchanged name `scoville-anti-ai-coding-slop`, and refresh its skill list.
+Add "for all my projects" or "only for this project" when the installation
+scope matters. The agent should choose its current supported skills directory,
+install the repository under the unchanged name
+`scoville-anti-ai-coding-slop`, and refresh its skill list.
 
-Only if your agent cannot install skills itself, clone or copy the repository manually so the final path is:
+If your agent cannot install skills itself, clone or copy the repository so
+the final path is:
 
 ```text
 <skills-dir>/scoville-anti-ai-coding-slop/SKILL.md
 ```
 
-Then restart or refresh the agent and confirm that `scoville-anti-ai-coding-slop` is available. Consult the agent's current documentation for its skills directory; paths differ between agents and may change over time.
+For Claude Code, `<skills-dir>` is `~/.claude/skills/` (all projects) or
+`.claude/skills/` inside a repository (that project only). For other agents,
+consult their current documentation — paths differ and change over time.
+
+**Verify it works.** Skills load on demand, so test the trigger. Ask your
+agent: *"Classify this change per Scoville: rename one local variable in one
+file."* In a repository without a stricter planning rule, you should get
+**Trivial** — no plan, no new test, one narrow check. If instead it proposes a
+work plan, first confirm that no user or repository rule requires one.
+
+**What it costs.** The skill puts roughly 2,100 words into context whenever it
+triggers — which, by design, is most engineering tasks. That is the price of
+the gate. If your context budget is tight, install it per-project rather than
+globally.
 
 ## What it enforces
 
-- explicit user and project workflow, resolved concern by concern, before skill defaults
-- independent size and risk classification instead of one heavyweight process for every change
-- safety and source-of-truth correctness ahead of local convenience or a smaller diff
-- one canonical owner, preserved boundary semantics, and durable work before progress or publication
-- the fewest meaningful behavior-complete work items, with one active item until a real stop condition
-- ephemeral plans for short work and one working plan when long multi-item work must survive compaction or handoff
-- structural checks for misleading wrappers, silent fallbacks, duplicate pathways, responsibility growth, speculative abstractions, mode creep, implementation-mirroring tests, and scaffolding presented as completion
-- focused validation without manufacturing tests; fail-first is the default for defects and invariant hardening
-- actual validation evidence, complete final-diff inspection, and explicit residual risk before completion
-- project-owned decision and rationale records, with one shared fallback file only when no established mechanism can preserve the record
-- scoped version-control and external actions that follow repository rules and explicit authorization
+- **Evidence over claims.** Every validation claim needs the actual check,
+  outcome, and proof — commands include their exit code. `NOT RUN` is a valid
+  report; invented output never is. Green tests alone don't approve structure.
+- **Scope discipline.** One behavior-complete work item at a time, the fewest
+  items the outcome needs, no unrelated cleanup, and a full final-diff
+  inspection before completion. Stopping requires a real stop condition — not
+  just a finished sub-step.
+- **Structural honesty.** Ten named failure modes (SC1–SC10) cover misleading
+  wrappers, silent fallbacks, lossy boundaries, state published before durable
+  work, duplicate pathways, speculative abstraction, implementation-mirroring
+  tests, and scaffolding presented as completion. Introduced findings block
+  completion.
+- **Proportionate process.** Changes are classified by size (Trivial / Tiny /
+  Standard) and risk (Structural / High) independently. Trivial edits get one
+  narrow check, not a plan. Tests target defects, invariants, and risky
+  contracts — not decorating a diff. Plans stay ephemeral by default; explicit
+  user or project rules and long work that must survive context compaction can
+  make them persistent.
+
+The full rules live in [SKILL.md](SKILL.md).
 
 ## Design
 
-Scoville is deliberately small. Agent skills use progressive disclosure: the agent first sees only the name and description, then loads `SKILL.md` when relevant, and only loads extra resources when needed. This repo has no scripts or assets because the useful behavior fits in the main file.
+Scoville is deliberately small. Agent skills use progressive disclosure: the
+agent first sees only the name and description, then loads `SKILL.md` when
+relevant. This repo has no scripts or assets because the useful behavior fits
+in the main file.
 
-The skill does not replace local instructions, architecture docs, CI, security policy, release workflow, or human review. It fills gaps where local rules are silent.
+The skill does not replace your instructions, architecture docs, CI, security
+policy, release workflow, or human review. It resolves every workflow concern
+in a fixed order — explicit user instruction first, then repository
+convention, then its own default — so it fills gaps instead of fighting your
+`AGENTS.md`. A project convention can replace any Scoville default; it can
+never justify fabricated evidence or weakened guards.
 
-Scoville keeps the structural bar high without turning every edit into a heavyweight test project. One active work item is a work-in-progress limit, not a reason to stop the turn. Tiny changes normally reuse one focused check, proofs of concept validate only their stated hypothesis, and fail-first remains the default for actual defects and invariant hardening. Passing tests is still not enough when a change creates duplicate ownership, lossy boundaries, or state-before-durable behavior.
-
-Short work keeps its plan ephemeral. When long multi-item work must survive likely context compaction or handoff and the project provides no mechanism, Scoville maintains one uncommitted working plan, re-reads it after resuming, and removes it at completion only when Scoville created it and neither the user nor repository requires retention. The plan never becomes a source of truth for product behavior.
-
-Scoville keeps binding behavior in canonical project sources and reuses the project's decision and rationale mechanisms. When none exists, it uses an already-authorized commit or pull request when possible; otherwise one `docs/engineering-decisions.md` stores both `D` and `R` entries. It never creates a second fallback log, and agents search history only when current sources reveal a concrete need.
+Two mechanisms handle long-running work. When a multi-item plan must survive
+context compaction or handoff and the project provides no mechanism, Scoville
+maintains one uncommitted working plan file, re-reads canonical sources before
+the plan after resuming, and removes the file at completion only when Scoville
+created it and neither the user nor repository requires retention. Material
+decisions are recorded in the project's own mechanism (ADRs, PR descriptions,
+commit messages) when one exists; otherwise a single
+`docs/engineering-decisions.md` is the only fallback log it will ever create.
 
 ## Sources and inspirations
 
@@ -66,4 +134,10 @@ The skill synthesizes the following sources:
 
 ## Status
 
-Minimal single-skill repo. No bundled scripts, references, assets, runtime dependencies, or stack-specific rules.
+Minimal single-skill repo: `SKILL.md` plus agent metadata (`agents/openai.yaml`),
+changelog, and license. No bundled scripts, references, assets, runtime
+dependencies, or stack-specific rules.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
