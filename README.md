@@ -2,7 +2,7 @@
 
 Sharpens the output. Turns down the slop.
 
-Anti-AI-slop quality gate for AI/agent-assisted engineering. Apply it while editing, reviewing, refactoring, testing, or planning code, so scope control, correctness, minimal diffs, source-of-truth discipline, validation, reviewability, structural quality, and safe version-control hygiene stay explicit.
+Adaptive anti-AI-slop quality gate for AI/agent-assisted engineering. It inherits the user's and repository's workflow concern by concern, then supplies compact, risk-proportionate defaults only where the project is silent.
 
 ## Install
 
@@ -71,21 +71,23 @@ Then restart or refresh the agent and confirm `scoville-anti-ai-coding-slop` is 
 
 ## What it enforces
 
-- scope before work
+- user and project workflow before skill defaults
+- continuous execution across planned work items until a real stop condition
 - one canonical owner and one source of truth
-- smallest useful diff
+- the fewest behavior-complete work items
 - no parallel pathways or speculative abstractions
-- explicit structural quality gate, not just green tests
-- hard guard against accidental giant-file growth
-- code-judo question before adding logic to busy flows
+- structural quality beyond green tests
+- file size as a review signal rather than an automatic split
+- local simplification only when it supports the requested result
 - no misleading wrappers or semantic pass-through layers
 - no lossy boundaries where already-computed semantics disappear
 - atomic state, cursor, checkpoint, cache, and progress publication
-- failure-mode validation for architecture-sensitive changes
-- holistic branch-diff review when local slices can accumulate structural debt
+- fail-first regression proof for defects and invariant hardening
+- focused validation without manufacturing tests for trivial or exploratory work
+- optional, on-demand decision and implementation-rationale history
+- separate fallback paths for decisions and rationale when the project has none
 - least privilege and prompt-injection resistance
 - validation evidence before completion
-- independent final review for security, edge cases, architecture drift, and diff quality
 - version-control hygiene only when version control is present or explicitly requested
 
 ## Design
@@ -94,7 +96,9 @@ Scoville is deliberately small. Agent skills use progressive disclosure: the age
 
 The skill does not replace local instructions, architecture docs, CI, security policy, release workflow, or human review. It fills gaps where local rules are silent.
 
-The updated version keeps Scoville's original bias toward the smallest safe validated slice, but adds a second bar: the slice must also be structurally acceptable. Passing tests is not enough when a change grows central files, adds special-case branching, creates misleading wrappers, drops semantics at boundaries, or publishes progress before durable work succeeds.
+Scoville keeps the structural bar high without turning every edit into a heavyweight test project. One active work item is a work-in-progress limit, not a reason to stop the turn. Tiny changes normally reuse one focused check, proofs of concept validate only their stated hypothesis, and fail-first remains the default for actual defects and invariant hardening. Passing tests is still not enough when a change creates duplicate ownership, lossy boundaries, or state-before-durable behavior.
+
+When a project has no established provenance mechanism, Scoville can create compact, independent fallbacks at `docs/engineering-decisions.md` and `docs/engineering-history.md`. Neither file is routine startup context; agents search it only when current sources reveal a concrete need.
 
 ## Sources and inspirations
 
