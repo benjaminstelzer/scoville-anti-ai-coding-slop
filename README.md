@@ -32,10 +32,11 @@ Then restart or refresh the agent and confirm that `scoville-anti-ai-coding-slop
 - safety and source-of-truth correctness ahead of local convenience or a smaller diff
 - one canonical owner, preserved boundary semantics, and durable work before progress or publication
 - the fewest meaningful behavior-complete work items, with one active item until a real stop condition
+- ephemeral plans for short work and one working plan when long multi-item work must survive compaction or handoff
 - structural checks for misleading wrappers, silent fallbacks, duplicate pathways, responsibility growth, speculative abstractions, mode creep, implementation-mirroring tests, and scaffolding presented as completion
 - focused validation without manufacturing tests; fail-first is the default for defects and invariant hardening
 - actual validation evidence, complete final-diff inspection, and explicit residual risk before completion
-- project-owned decision and rationale records, searched only when current sources leave a concrete need
+- project-owned decision and rationale records, with one shared fallback file only when no established mechanism can preserve the record
 - scoped version-control and external actions that follow repository rules and explicit authorization
 
 ## Design
@@ -46,7 +47,9 @@ The skill does not replace local instructions, architecture docs, CI, security p
 
 Scoville keeps the structural bar high without turning every edit into a heavyweight test project. One active work item is a work-in-progress limit, not a reason to stop the turn. Tiny changes normally reuse one focused check, proofs of concept validate only their stated hypothesis, and fail-first remains the default for actual defects and invariant hardening. Passing tests is still not enough when a change creates duplicate ownership, lossy boundaries, or state-before-durable behavior.
 
-Scoville keeps binding behavior in canonical project sources and reuses the project's decision and rationale mechanisms. It does not create fallback logs unless the user or repository requests one, and agents search history only when current sources reveal a concrete need.
+Short work keeps its plan ephemeral. When long multi-item work must survive likely context compaction or handoff and the project provides no mechanism, Scoville maintains one uncommitted working plan, re-reads it after resuming, and removes it at completion only when Scoville created it and neither the user nor repository requires retention. The plan never becomes a source of truth for product behavior.
+
+Scoville keeps binding behavior in canonical project sources and reuses the project's decision and rationale mechanisms. When none exists, it uses an already-authorized commit or pull request when possible; otherwise one `docs/engineering-decisions.md` stores both `D` and `R` entries. It never creates a second fallback log, and agents search history only when current sources reveal a concrete need.
 
 ## Sources and inspirations
 

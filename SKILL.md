@@ -108,7 +108,26 @@ decision is missing, the source materially contradicts the task, new authority
 is required, unrelated changes cannot be separated, or no safe approach remains.
 Ask one specific question only when no safe scoped interpretation exists.
 
-Use no persistent plan file unless the user or repository requests one:
+Honor explicit user instructions about plan persistence and path. Otherwise use
+the project's persistent planning mechanism when designated. If neither
+specifies persistence, keep the fallback plan ephemeral when the work should
+finish within the current context. Persist it to exactly one working-state file
+only when the plan must survive likely context compaction or handoff—usually
+multi-item work unlikely to finish in the current context, especially
+long-running Structural or High work.
+
+Use the project's preferred path or, when none exists, `PLAN.md` at the repository
+root. Reuse that file only when it is the active plan for the current work; never
+overwrite or delete a user- or project-owned plan. Update a Scoville-created file
+on material scope changes and item completion. Delete it after the requested work
+completes only when Scoville created it for that work and neither the user nor
+repository requires retention. Treat it as working state, never as behavioral
+source of truth or a substitute for the final report, and do not commit it unless
+the user or repository tracks plans.
+
+After compaction or handoff, re-read applicable directives, version-control
+status, and current canonical sources before the plan. Reconcile any mismatch
+before continuing.
 
 ```text
 GOAL: <observable result>
@@ -206,8 +225,20 @@ tests do not approve ownership, structure, boundaries, or commit order.
 Keep current binding behavior in canonical code, schemas, config, specs, or
 active project instructions. Use the project's established decision and
 rationale mechanisms, and record only material scope, owner, contract, approach,
-validation-limit, waiver, or future-work choices. Do not create a competing log
-or fallback file unless the user or repository requests one.
+validation-limit, waiver, or future-work choices.
+
+When no project mechanism exists, record provenance in an already-authorized
+commit message or pull-request description when available. If no such artifact
+exists, or the record must remain discoverable in the working tree before commit
+or handoff, create or reuse `docs/engineering-decisions.md` on the first needed
+entry without separate approval. Store both material decisions and durable
+implementation rationale there as distinct `D` and `R` entries. Mention creating
+the file in the final report and never create another fallback log.
+
+```text
+- D-YYYYMMDD-NN [accepted] `<scope>` — <decision>; why <reason>.
+- R-YYYYMMDD-NN `<scope>` — <durable rationale>; because <reason>.
+```
 
 Treat decision history as provenance, not current authority. Search it only when
 current sources leave a relevant choice unexplained, and then only by ID, scope,
