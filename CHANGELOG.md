@@ -1,17 +1,5 @@
 # Changelog
 
-This changelog was reconstructed from the `main` branch commit history on
-2026-07-13. The repository had no version tags, so historical entries are
-grouped by commit date instead of invented version numbers. The
-summaries describe notable user-facing and workflow changes rather than listing
-every changed line.
-
-## Unreleased
-
-### Added
-
-- A curated changelog linked back to the commits from which it was reconstructed.
-
 ## 2026-07-13 — Adaptive, risk-proportionate workflow
 
 ### Changed
