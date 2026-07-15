@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-07-15 — GPT-5.6 Luna / Low optimization and validation
+
+### Validated
+
+- Optimization-gated the standalone skill against GPT-5.6 Luna at low reasoning
+  in an isolated Codex environment. The unchanged skill identified all required
+  Scoville concerns in 10/10 single-concern cases and 10/10 compound cases with
+  two or three interacting concerns.
+- Kept the production-proven skill rules unchanged because the complete Luna
+  test suites passed without requiring model-specific wording or branches.
+- Documented the evidence boundary: these suites test pre-edit instruction
+  comprehension, not executable patch quality on real repositories.
+
 ## 2026-07-13 — Adaptive, risk-proportionate workflow
 
 ### Changed

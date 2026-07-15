@@ -74,6 +74,15 @@ compatible agent loads the instructions when the skill triggers, although exact
 context accounting depends on the agent. Installing it per project limits where
 it is available; it does not reduce the cost of an individual invocation.
 
+**Small-model optimization and validation.** Scoville was optimization-gated
+against GPT-5.6 Luna at low reasoning in an isolated Codex environment. The
+gate selected the unchanged standalone skill: it identified all required
+Scoville concerns in 10/10 single-concern cases and 10/10 compound cases
+containing two or three interacting concerns, so no model-specific rules were
+added. These tests establish instruction comprehension before editing; they do
+not by themselves establish the quality of executable patches on real
+repositories.
+
 ## What it enforces
 
 - **Evidence over claims.** Every validation claim needs the actual check,
