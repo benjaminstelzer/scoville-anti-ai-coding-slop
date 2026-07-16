@@ -1,5 +1,33 @@
 # Changelog
 
+## 2026-07-16 — Bounded executable repository discovery
+
+### Changed
+
+- Treat runtime-supplied repository directives as already loaded and avoid
+  rediscovering directive or conventional workflow files without concrete
+  evidence that another exact directive applies.
+- Use exact task paths directly, resolve logical owners with one targeted
+  filename or symbol search, and expand discovery only when inspected evidence
+  leaves a material owner, boundary, or validation question unresolved.
+- Stop localization after source and its directly relevant test confirm the
+  canonical owner. Do not verify an opened path with another filename search or
+  reread it unchanged before editing.
+
+### Validated
+
+- Optimized the standalone skill with SkillOpt against executable Terra/medium
+  engineering tasks. The selected frozen candidate passed development,
+  validation, and held-out splits at 3/3 each.
+- The original control passed the held-out behavior, canonical-owner,
+  changed-file, and focused-test checks in all three cases, but reached 0/3 on
+  the complete hard gate because it still performed unnecessary broad or
+  post-owner exploration. The selected wording removed those failures without
+  relaxing behavior, ownership, or validation requirements.
+- Limited the claim to the fixed nine-case executable suite and one model/run
+  configuration; it does not establish general latency, token, or product-value
+  improvements.
+
 ## 2026-07-15 — GPT-5.6 Luna / Low optimization and validation
 
 ### Validated

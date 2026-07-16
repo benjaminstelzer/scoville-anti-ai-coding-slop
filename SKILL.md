@@ -87,10 +87,32 @@ substitute and report the affected behavior as unverified.
 
 For each non-Trivial change:
 
-1. Read applicable directives, inspect version-control status, and preserve
-   unrelated user changes. Do not load optional history during baseline discovery.
+1. Treat applicable runtime-supplied directives as already loaded, inspect
+   version-control status, and preserve unrelated user changes. Do not search for
+   directive files or conventional workflow files. Read an additional exact
+   directive path only when a current instruction identifies it or the active
+   path enters an explicitly signaled new scope. Do not load optional history
+   during baseline discovery.
 2. Locate the source of truth, canonical owner, affected boundaries, relevant
-   tests, and decisive validation.
+   tests, and decisive validation. Once source and directly relevant tests
+   confirm the canonical owner, stop localization. Inspect additional consumers,
+   manifests, configuration, or runtime files only when current evidence makes
+   them necessary. For Tiny work with a known owner, use the direct path: inspect
+   owner and relevant test, reproduce when required, patch, run focused
+   validation, and inspect the diff.
+
+Bound native inventory to the uncertainty that remains. When the request names
+   exact paths, open only those paths and inspect version-control status. When it
+   names logical owners, boundaries, symbols, or a focused test without paths,
+   use one targeted filename or symbol search to
+   resolve them, then inspect only the matches. Do not enumerate the repository
+   root, list broad file classes, probe conventional manifests or test configs, or
+   bundle such precautionary discovery into another required command. Expand one
+   evidence-driven step at a time only when targeted resolution fails, inspected
+   source identifies another necessary owner or boundary, directives require it,
+   or focused validation cannot be determined. Once an exact path opens
+   successfully, treat it as resolved: do not verify it with a filename search or
+   reread it unchanged before editing.
 3. Plan Standard, Structural, or High work with the project's mechanism when
    designated; otherwise use the ephemeral fallback below.
 4. Pass the relevant structure checks and implement one behavior-complete work
