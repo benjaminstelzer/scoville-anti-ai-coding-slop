@@ -1,5 +1,30 @@
 # Changelog
 
+## 2026-07-16 — Validation-loop termination
+
+### Changed
+
+- Require a specifically named Structural or High flag before adding broader
+  validation that is not already required by the repository or user.
+- Make one passing decisive check terminal for its work item and proceed
+  directly to one final diff and version-control status inspection.
+- Prohibit unchanged failed-command reruns, repeated confirmation checks, and
+  additional similar tests after decisive evidence.
+- Classify failed checks from their output. Infrastructure failures permit at
+  most one different, narrower substitute check and remain explicitly
+  unverified.
+- Prevent missing dependencies or import failures from automatically escalating
+  into builds, installations, code generation, or renewed repository
+  exploration.
+
+### Validation intent
+
+- Preserve Scoville's owner, structure, safety, and evidence requirements while
+  removing redundant validation and post-proof exploration.
+- Treat token and runtime reductions as directional goals; correctness,
+  required repository tests, and truthful residual-risk reporting remain hard
+  gates.
+
 ## 2026-07-16 — Bounded executable repository discovery
 
 ### Changed

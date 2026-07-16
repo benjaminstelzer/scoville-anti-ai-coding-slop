@@ -119,8 +119,9 @@ Bound native inventory to the uncertainty that remains. When the request names
    item at a time. Treat this as a WIP limit, not a turn boundary; immediately
    continue with the next planned in-scope item after a validated checkpoint.
 5. Run the narrowest decisive validation, then broader checks required by the
-   project or justified by risk. Run broad suites once at a meaningful completion
-   boundary unless changes invalidate them or the project requires otherwise.
+   project or justified by a named Structural or High flag. Run broad suites
+   once at a meaningful completion boundary unless changes invalidate them or
+   the project requires otherwise.
 6. Inspect every changed file and the complete final diff.
 7. Report once when yielding control.
 
@@ -164,6 +165,35 @@ RISK: <structural/high flags, validation limits>
 Update the plan before a substantive scope change, not for incidental output.
 Search proportionately before creating names, APIs, flags, schemas, config keys,
 commands, files, helpers, or layers; stop when the owner and contract are clear.
+
+## Validation Economy
+
+- Localization ends when source confirms the canonical owner and one directly
+  relevant test or focused check is identified. After that, open a new file or
+  directory only when inspected evidence names it as necessary, and do not
+  reopen an unchanged file already inspected in this task.
+- Run one primary decisive check that directly exercises the changed behavior.
+  A passing decisive check is terminal for that work item: do not run
+  additional similar tests, inline harnesses, or confirmation reruns of the
+  same behavior.
+- Classify every failed check before reacting, citing its output. A
+  substantive failure (the changed behavior misbehaves) means fix the change.
+  An infrastructure failure (missing dependency, unavailable environment, or a
+  collection/import error unrelated to the change) permits at most one
+  substitute check of a different kind — the narrowest that still exercises
+  the changed code — after which report the behavior as unverified.
+- Never rerun a failed command unchanged. Rerun only after an edit,
+  installation, or configuration change that plausibly alters its outcome, and
+  name that change.
+- Run a build, installation, or code generation only when it is the narrowest
+  decisive check or a named prerequisite of one, never as a first-resort
+  diagnostic for an import or dependency error.
+- Treat generated build or test artifacts as expected transient output: ignore
+  or remove them once, keep them out of the final diff unless tracked, and do
+  not start new searches because they appeared.
+- After decisive validation passes, proceed directly to exactly one final diff
+  and version-control status inspection, then the single report. Start another
+  check round only when that inspection itself reveals a new problem.
 
 ## Structural Failure Modes
 
