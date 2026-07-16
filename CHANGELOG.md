@@ -8,6 +8,9 @@
   validation that is not already required by the repository or user.
 - Make one passing decisive check terminal for its work item and proceed
   directly to one final diff and version-control status inspection.
+- Make that final Git inspection operationally atomic: one command bundles
+  `git diff --check`, the scoped diff, and `git status --short`; separate
+  pre/post inspection commands are forbidden.
 - Prohibit unchanged failed-command reruns, repeated confirmation checks, and
   additional similar tests after decisive evidence.
 - Classify failed checks from their output. Infrastructure failures permit at

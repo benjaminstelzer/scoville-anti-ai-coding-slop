@@ -191,9 +191,11 @@ commands, files, helpers, or layers; stop when the owner and contract are clear.
 - Treat generated build or test artifacts as expected transient output: ignore
   or remove them once, keep them out of the final diff unless tracked, and do
   not start new searches because they appeared.
-- After decisive validation passes, proceed directly to exactly one final diff
-  and version-control status inspection, then the single report. Start another
-  check round only when that inspection itself reveals a new problem.
+- After decisive validation passes, run exactly one final inspection command,
+  then the single report. In a Git repository, that one command must bundle
+  `git diff --check`, the scoped `git diff`, and `git status --short`; never run
+  a separate diff or status command before or after it. Start another check
+  round only when that inspection itself reveals a new problem.
 
 ## Structural Failure Modes
 
