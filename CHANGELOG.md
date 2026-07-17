@@ -1,6 +1,6 @@
 # Changelog
 
-## 2026-07-16 — Validation-loop termination
+## 2026-07-16: Validation-loop termination
 
 ### Changed
 
@@ -28,7 +28,7 @@
   required repository tests, and truthful residual-risk reporting remain hard
   gates.
 
-## 2026-07-16 — Bounded executable repository discovery
+## 2026-07-16: Bounded executable repository discovery
 
 ### Changed
 
@@ -56,7 +56,7 @@
   configuration; it does not establish general latency, token, or product-value
   improvements.
 
-## 2026-07-15 — GPT-5.6 Luna / Low optimization and validation
+## 2026-07-15: GPT-5.6 Luna / Low optimization and validation
 
 ### Validated
 
@@ -69,7 +69,7 @@
 - Documented the evidence boundary: these suites test pre-edit instruction
   comprehension, not executable patch quality on real repositories.
 
-## 2026-07-13 — Adaptive, risk-proportionate workflow
+## 2026-07-13: Adaptive, risk-proportionate workflow
 
 ### Changed
 
@@ -105,7 +105,7 @@
 [`8818ce8`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/8818ce806caed79bb84a723ea3c0b901ecbbe727),
 [`53c1c26`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/53c1c265c49c2d5bbdd28cb8a43603129e969fe9)
 
-## 2026-07-10 — Structural execution and review gate
+## 2026-07-10: Structural execution and review gate
 
 ### Changed
 
@@ -124,7 +124,7 @@
 **Commits:** [`98251ac`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/98251ac576ef7a7da3c49e7342ec641bcade0f4c),
 [`2c465cf`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/2c465cf06f3926c7406bd2cee71e4dd61487421c)
 
-## 2026-07-08 — Leaner structural workflow
+## 2026-07-08: Leaner structural workflow
 
 ### Changed
 
@@ -136,7 +136,7 @@
 
 **Commit:** [`fc0730f`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/fc0730f6d26cefab2d514d6ef652e991545bfd86)
 
-## 2026-07-07 — Structural quality beyond green tests
+## 2026-07-07: Structural quality beyond green tests
 
 ### Added
 
@@ -153,7 +153,7 @@
 **Commits:** [`703f97b`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/703f97bfdce236d5e96c8066d5df0d3ca8b43608),
 [`f71d38d`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/f71d38d28c75a87ff919745cf9e723f2f09f482c)
 
-## 2026-07-03 — Execution-focused quality gate
+## 2026-07-03: Execution-focused quality gate
 
 ### Changed
 
@@ -170,7 +170,7 @@
 [`24148db`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/24148dbdf2e4bc8e311436d256853427fc7f7478),
 [`ddb8d91`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/ddb8d91d2b645ea784a1346e89df56be95bfccbf)
 
-## 2026-07-01 — Repository metadata correction
+## 2026-07-01: Repository metadata correction
 
 ### Fixed
 
@@ -178,7 +178,7 @@
 
 **Commit:** [`702ede7`](https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop/commit/702ede704e0fe7b899fe007d43680968c85332b0)
 
-## 2026-06-29 — Initial skill
+## 2026-06-29: Initial skill
 
 ### Added
 
