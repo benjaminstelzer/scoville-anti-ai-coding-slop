@@ -84,7 +84,7 @@
   agent-specific manual installation matrix with one agent-install prompt plus
   a short manual fallback.
 - Simplified the skill with an agent-neutral trigger, direct wording, concrete
-  SC1–SC5 examples, clearer gate timing, and project-owned decision records
+  SC1-SC5 examples, clearer gate timing, and project-owned decision records
   while retaining the full safety and risk gates.
 - Added a user-overridable working-plan fallback for likely compaction or
   handoff and one shared decision-and-rationale record when projects provide no
@@ -114,7 +114,7 @@
   validation evidence.
 - Expanded the skill from a code-change loop into explicit Change, Review,
   Advisory, and Non-engineering modes for engineering artifacts as well as code.
-- Established the `SC1`–`SC10` structural failure model, covering misleading
+- Established the `SC1`-`SC10` structural failure model, covering misleading
   wrappers, silent fallbacks, lossy boundaries, state-before-durable ordering,
   duplicate pathways, responsibility growth, speculative abstraction, mode
   creep, implementation-mirroring tests, and incomplete scaffolding.

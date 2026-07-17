@@ -135,7 +135,7 @@ Honor explicit user instructions about plan persistence and path. Otherwise use
 the project's persistent planning mechanism when designated. If neither
 specifies persistence, keep the fallback plan ephemeral when the work should
 finish within the current context. Persist it to exactly one working-state file
-only when the plan must survive likely context compaction or handoff—usually
+only when the plan must survive likely context compaction or handoff - usually
 multi-item work unlikely to finish in the current context, especially
 long-running Structural or High work.
 
@@ -157,7 +157,7 @@ before continuing.
 GOAL: <observable result>
 NOT DOING: <exclusions>
 OWNER: <canonical sources and owner>
-WORK ITEMS: [ ] 1. <behavior-complete result> — scope: <files> — proof: <check>
+WORK ITEMS: [ ] 1. <behavior-complete result> - scope: <files> - proof: <check>
 ACTIVE: 1
 RISK: <structural/high flags, validation limits>
 ```
@@ -180,8 +180,8 @@ commands, files, helpers, or layers; stop when the owner and contract are clear.
   substantive failure (the changed behavior misbehaves) means fix the change.
   An infrastructure failure (missing dependency, unavailable environment, or a
   collection/import error unrelated to the change) permits at most one
-  substitute check of a different kind — the narrowest that still exercises
-  the changed code — after which report the behavior as unverified.
+  substitute check of a different kind - the narrowest that still exercises
+  the changed code - after which report the behavior as unverified.
 - Never rerun a failed command unchanged. Rerun only after an edit,
   installation, or configuration change that plausibly alters its outcome, and
   name that change.
@@ -199,8 +199,8 @@ commands, files, helpers, or layers; stop when the owner and contract are clear.
 
 ## Structural Failure Modes
 
-Resolve every introduced SC1–SC8 finding before continuing. Check SC9–SC10
-during validation and completion. Never ship an SC1–SC10 finding introduced by
+Resolve every introduced SC1-SC8 finding before continuing. Check SC9-SC10
+during validation and completion. Never ship an SC1-SC10 finding introduced by
 the change. A documented project tradeoff may override a presumption, never a
 safety or integrity invariant.
 
@@ -261,8 +261,8 @@ evidence.
   mode when practical; this may run after implementation.
 - **Ordinary feature:** Test observable regression-prone behavior when the test
   has lasting value. Fail-first is optional; do not manufacture a red run.
-- **Tiny or mechanical change:** Prefer one existing focused check—test,
-  typecheck, build, lint, focused execution, or diff inspection—when it directly
+- **Tiny or mechanical change:** Prefer one existing focused check - test,
+  typecheck, build, lint, focused execution, or diff inspection - when it directly
   proves the result. Add no test by default.
 - **Exploration or proof of concept:** Use only the cheapest decisive observation
   for the stated hypothesis. Do not add repeated, stress, benchmark, matrix, or
@@ -291,8 +291,8 @@ implementation rationale there as distinct `D` and `R` entries. Mention creating
 the file in the final report and never create another fallback log.
 
 ```text
-- D-YYYYMMDD-NN [accepted] `<scope>` — <decision>; why <reason>.
-- R-YYYYMMDD-NN `<scope>` — <durable rationale>; because <reason>.
+- D-YYYYMMDD-NN [accepted] `<scope>` - <decision>; why <reason>.
+- R-YYYYMMDD-NN `<scope>` - <durable rationale>; because <reason>.
 ```
 
 Append a superseding entry instead of silently rewriting semantic history.
@@ -317,7 +317,7 @@ owner, symbol, or path. Never load history wholesale.
 ## Completion and Reporting
 
 Before completion, confirm that the result belongs to the canonical owner, every
-diff hunk is necessary, relevant risk is validated, no SC1–SC10 finding was
+diff hunk is necessary, relevant risk is validated, no SC1-SC10 finding was
 introduced, and all validation limits are explicit.
 
 Use the project's report format when present. Otherwise report once at handoff:

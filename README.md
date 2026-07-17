@@ -69,7 +69,7 @@ behavior or contract effect."* When neither user nor repository rules replace
 Scoville's classification, you should get **Trivial**: no plan, no new test, and
 one natural narrow check when one exists.
 
-**What it costs.** `SKILL.md` currently contains roughly 2,100 words. A
+**What it costs.** `SKILL.md` currently contains roughly 2,600 words. A
 compatible agent loads the instructions when the skill triggers, although exact
 context accounting depends on the agent. Installing it per project limits where
 it is available; it does not reduce the cost of an individual invocation.
