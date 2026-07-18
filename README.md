@@ -95,7 +95,8 @@ instruction file: `AGENTS.md` for Codex, `CLAUDE.md` for Claude Code.
 
 > [!WARNING]
 > Do not install the skill and embed the section in the same project: one
-> delivery mechanism is enough, and two copies can drift apart.
+> delivery mechanism is enough. Two copies can drift apart, and when the skill
+> triggers, the same rules load into context twice and cost additional tokens.
 
 `AGENTS-SECTION.md` contains the same rules as `SKILL.md`; only the packaging
 differs, so both delivery forms enforce identical behavior. The file is
