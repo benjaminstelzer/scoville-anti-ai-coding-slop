@@ -97,8 +97,9 @@ If you use both tools in one project, keep the text in `AGENTS.md` only and
 give Claude Code a `CLAUDE.md` containing the single line `@AGENTS.md`. Claude
 Code imports the file, so both tools read one shared copy.
 
-Do not install the skill and embed the section in the same project: one
-delivery mechanism is enough, and two copies can drift apart.
+> [!WARNING]
+> Do not install the skill and embed the section in the same project: one
+> delivery mechanism is enough, and two copies can drift apart.
 
 `AGENTS-SECTION.md` contains the same rules as `SKILL.md`; only the packaging
 differs, so both delivery forms enforce identical behavior. The file is
