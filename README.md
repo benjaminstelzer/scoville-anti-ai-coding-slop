@@ -93,10 +93,6 @@ directly in your project instructions instead:
 Append the content of [AGENTS-SECTION.md](AGENTS-SECTION.md) to your project's
 instruction file: `AGENTS.md` for Codex, `CLAUDE.md` for Claude Code.
 
-If you use both tools in one project, keep the text in `AGENTS.md` only and
-give Claude Code a `CLAUDE.md` containing the single line `@AGENTS.md`. Claude
-Code imports the file, so both tools read one shared copy.
-
 > [!WARNING]
 > Do not install the skill and embed the section in the same project: one
 > delivery mechanism is enough, and two copies can drift apart.
