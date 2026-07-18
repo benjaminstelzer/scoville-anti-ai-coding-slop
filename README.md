@@ -83,6 +83,29 @@ added. These tests establish instruction comprehension before editing; they do
 not by themselves establish the quality of executable patches on real
 repositories.
 
+## Use via AGENTS.md instead of a skill
+
+Skills load on demand: the agent sees name and description first and reads the
+full rules only when the task triggers them. If your agent does not support
+skills, or you want the rules active from the very first action, embed Scoville
+directly in your project instructions instead:
+
+1. Append the content of [AGENTS-SECTION.md](AGENTS-SECTION.md) to your
+   project's `AGENTS.md`.
+2. For Claude Code, which reads `CLAUDE.md` rather than `AGENTS.md`, create a
+   `CLAUDE.md` that contains the single line `@AGENTS.md`. Both tools then
+   share the same instructions without duplication.
+
+Do not install the skill and embed the section in the same project: one
+delivery mechanism is enough, and two copies can drift apart.
+
+`AGENTS-SECTION.md` is the complete, unshortened `SKILL.md` body with only the
+skill-specific parts adapted. The frontmatter is replaced by a scope sentence,
+and the self-references ("this skill") now point at the surrounding instruction
+file; the rules themselves are unchanged. It is regenerated from `SKILL.md`
+whenever the skill changes. A benchmark comparing both delivery mechanisms is
+in progress; results will be added here.
+
 ## What it enforces
 
 - **Evidence over claims.** Every validation claim needs the actual check,
@@ -147,8 +170,8 @@ The skill draws from the following sources:
 
 ## Status
 
-Minimal single-skill repo: `SKILL.md` plus agent metadata (`agents/openai.yaml`),
-changelog, and license. No bundled scripts, references, assets, runtime
+Minimal single-skill repo: `SKILL.md`, the embeddable `AGENTS-SECTION.md`
+variant, agent metadata (`agents/openai.yaml`), changelog, and license. No bundled scripts, references, assets, runtime
 dependencies, or stack-specific rules.
 
 ## License

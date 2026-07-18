@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-18: Embeddable AGENTS.md delivery
+
+### Added
+
+- `AGENTS-SECTION.md`: the complete `SKILL.md` instruction body adapted for
+  direct embedding in a project `AGENTS.md` or, via import, `CLAUDE.md`. The
+  frontmatter is replaced by a scope sentence and the skill self-references are
+  reworded; the rules themselves are unchanged.
+- README section explaining when to embed the rules instead of installing the
+  skill and how to share one instruction file between Codex and Claude Code.
+
 ## 2026-07-16: Validation-loop termination
 
 ### Changed
