@@ -90,11 +90,12 @@ full rules only when the task triggers them. If your agent does not support
 skills, or you want the rules active from the very first action, embed Scoville
 directly in your project instructions instead:
 
-1. Append the content of [AGENTS-SECTION.md](AGENTS-SECTION.md) to your
-   project's `AGENTS.md`.
-2. For Claude Code, which reads `CLAUDE.md` rather than `AGENTS.md`, create a
-   `CLAUDE.md` that contains the single line `@AGENTS.md`. Both tools then
-   share the same instructions without duplication.
+Append the content of [AGENTS-SECTION.md](AGENTS-SECTION.md) to your project's
+instruction file: `AGENTS.md` for Codex, `CLAUDE.md` for Claude Code.
+
+If you use both tools in one project, keep the text in `AGENTS.md` only and
+give Claude Code a `CLAUDE.md` containing the single line `@AGENTS.md`. Claude
+Code imports the file, so both tools read one shared copy.
 
 Do not install the skill and embed the section in the same project: one
 delivery mechanism is enough, and two copies can drift apart.
