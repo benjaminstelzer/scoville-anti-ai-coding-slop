@@ -139,15 +139,28 @@ then its own default. This lets it fill gaps instead of fighting your
 `AGENTS.md`. A project convention can replace any Scoville default, but it can
 never justify fabricated evidence or weakened guards.
 
-Two mechanisms handle long-running work. When a multi-item plan must survive
-context compaction or handoff and the project provides no mechanism, Scoville
-maintains one working-plan file, re-reads canonical sources before the plan
-after resuming, and removes the file at completion only when Scoville created it
-and neither the user nor repository requires retention. The file stays
-uncommitted unless the user or repository tracks plans. Material decisions are
-recorded in the project's own mechanism when one exists. Otherwise, an already
-authorized commit message or pull-request description carries the record when
-available; if not, `docs/engineering-decisions.md` is the single fallback log.
+Two mechanisms handle long-running work: working plans and decision records.
+When a multi-item plan must survive context compaction or handoff and the
+project provides no mechanism, Scoville maintains one working-plan file,
+re-reads canonical sources before the plan after resuming, and removes the file
+at completion only when Scoville created it and neither the user nor repository
+requires retention. The file stays uncommitted unless the user or repository
+tracks plans.
+
+Material decisions leave a record. When an agent picks an owner, cuts scope,
+changes a contract, or accepts a validation limit, that reasoning normally dies
+with the session; the next agent or reviewer then re-litigates the choice or
+quietly reverses it. Scoville therefore records material decisions, and it
+records them where your project already does: an existing decision workflow
+such as ADRs or a design log is used as is, never replaced by a parallel one.
+Without such a mechanism, an authorized commit message or pull-request
+description carries the record. Only when neither works, or the record must
+stay visible in the working tree before a commit exists, does Scoville create
+`docs/engineering-decisions.md` as its single fallback log, announcing the new
+file in the final report. If that file shows up in a diff, the fallback did its
+job; designate your own mechanism and it will be used instead. The log is
+provenance, not authority: current behavior lives in code, schemas, and config,
+and the log only explains why.
 
 ## Sources and inspirations
 
