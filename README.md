@@ -32,8 +32,8 @@ and unproven claims until no actual progress is detectable. This skill measures,
 and limits, that dilution.
 
 The ten structural failure modes carry SC numbers (SC1-SC10). Here, SC stands
-for "structural concern." The higher your diff scores, the more it burns on
-review.
+for "structural concern." The more SC findings your diff collects, the more it
+burns on review.
 
 ## Install
 
@@ -48,7 +48,7 @@ https://github.com/benjaminstelzer/scoville-anti-ai-coding-slop
 ```
 
 Add "for all my projects" or "only for this project" when the installation
-scope matters. The agent should choose its current supported skills directory,
+scope matters. The agent should choose its supported skills directory,
 install the repository under the unchanged name
 `scoville-anti-ai-coding-slop`, and refresh its skill list.
 
@@ -61,7 +61,7 @@ final path is:
 
 For Claude Code, `<skills-dir>` is `~/.claude/skills/` for all projects or
 `.claude/skills/` inside a repository for that project only. For other agents,
-consult their current documentation because paths differ and change over time.
+consult their documentation; paths differ per agent.
 
 **Verify it works.** Skills load on demand, so test the trigger. Ask your agent:
 *"Classify this change per Scoville: rename one purely local variable with no
@@ -74,12 +74,11 @@ compatible agent loads the instructions when the skill triggers, although exact
 context accounting depends on the agent. Installing it per project limits where
 it is available; it does not reduce the cost of an individual invocation.
 
-**Small-model optimization and validation.** Scoville was optimization-gated
-against GPT-5.6 Luna at low reasoning in an isolated Codex environment. The
-gate selected the unchanged standalone skill: it identified all required
-Scoville concerns in 10/10 single-concern cases and 10/10 compound cases
-containing two or three interacting concerns, so no model-specific rules were
-added. These tests establish instruction comprehension before editing; they do
+**Small-model validation.** Scoville was tested against GPT-5.6 Luna at low
+reasoning in an isolated Codex environment, to check whether small models need
+extra rules. They do not: the unchanged skill identified all required Scoville
+concerns in 10/10 single-concern cases and 10/10 compound cases with two or
+three interacting concerns. These tests establish instruction comprehension before editing; they do
 not by themselves establish the quality of executable patches on real
 repositories.
 
@@ -88,7 +87,7 @@ repositories.
 Skills load on demand: the agent sees name and description first and reads the
 full rules only when the task triggers them. If your agent does not support
 skills, or you want the rules active from the very first action, embed Scoville
-directly in your project instructions instead:
+directly in your project instructions instead.
 
 Append the content of [AGENTS-SECTION.md](AGENTS-SECTION.md) to your project's
 instruction file: `AGENTS.md` for Codex, `CLAUDE.md` for Claude Code.
@@ -115,8 +114,9 @@ mechanisms is in progress; results will be added here.
   just a finished sub-step.
 - **Structural honesty.** Ten named failure modes (SC1-SC10) cover misleading
   wrappers, silent fallbacks, lossy boundaries, state published before durable
-  work, duplicate pathways, speculative abstraction, implementation-mirroring
-  tests, and scaffolding presented as completion. Introduced findings block
+  work, duplicate pathways, responsibility growth, speculative abstraction,
+  mode creep, implementation-mirroring tests, and scaffolding presented as
+  completion. Introduced findings block
   completion.
 - **Proportionate process.** Changes are classified by size (Trivial / Tiny /
   Standard) and risk (Structural / High) independently. Trivial edits get one
@@ -129,10 +129,8 @@ The full rules live in [SKILL.md](SKILL.md).
 
 ## Design
 
-Scoville is deliberately small. Agent skills use progressive disclosure: the
-agent first sees only the name and description, then loads `SKILL.md` when it is
-relevant. This repo has no scripts or assets because the useful behavior fits
-in the main file.
+Scoville is deliberately small: this repo has no scripts or assets because the
+useful behavior fits in the instruction file.
 
 The skill does not replace your instructions, architecture docs, CI, security
 policy, release workflow, or human review. It resolves every workflow concern
@@ -168,8 +166,9 @@ The skill draws from the following sources:
 ## Status
 
 Minimal single-skill repo: `SKILL.md`, the embeddable `AGENTS-SECTION.md`
-variant, agent metadata (`agents/openai.yaml`), changelog, and license. No bundled scripts, references, assets, runtime
-dependencies, or stack-specific rules.
+variant, agent metadata (`agents/openai.yaml`), changelog, and license. No
+bundled scripts, references, assets, runtime dependencies, or stack-specific
+rules.
 
 ## License
 
