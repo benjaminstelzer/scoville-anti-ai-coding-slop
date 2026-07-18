@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-07-18: Benchmark results in the README
+
+### Added
+
+- Benchmark section with the 45-run delivery comparison: paired median deltas
+  against a native arm, the tested LOC-Bench instances, and a short protocol
+  summary.
+- The introduction states the measured token savings of roughly 25 to 30
+  percent at identical task quality.
+
 ## 2026-07-18: Consistent and unambiguous vocabulary
 
 ### Changed

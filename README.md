@@ -14,7 +14,9 @@ We have all seen it:
 
 That is AI slop: motion without progress. Scoville is an Agent Skill that makes
 your coding agent prove its work, stay in scope, and keep the structure honest,
-without turning every one-line edit into a process.
+without turning every one-line edit into a process. It also pays for itself: in
+a 45-run benchmark, Scoville cut total tokens by roughly 25 to 30 percent and
+agent time by about a sixth, at identical task quality.
 
 It targets both failure directions: unvalidated work, where success is claimed
 without evidence, and structural debt that hides behind green tests, such as
@@ -99,8 +101,28 @@ instruction file: `AGENTS.md` for Codex, `CLAUDE.md` for Claude Code.
 
 `AGENTS-SECTION.md` contains the same rules as `SKILL.md`; only the packaging
 differs, so both delivery forms enforce identical behavior. The file is
-regenerated whenever `SKILL.md` changes. A benchmark comparing the two delivery
-mechanisms is in progress; results will be added here.
+regenerated whenever `SKILL.md` changes. See [Benchmark](#benchmark) for the
+measured comparison of both delivery mechanisms.
+
+## Benchmark
+
+Paired medians against a native no-Scoville arm, agent `gpt-5.6-sol`, 45 valid
+runs:
+
+| Delivery | Total tokens | Uncached input | Cache-weighted cost | Action turns | Wall time |
+|---|---:|---:|---:|---:|---:|
+| Skill | -30.5% | -15.8% | -23.1% | -21.1% | -16.6% |
+| `AGENTS.md` | -31.3% | -20.4% | -27.1% | -33.3% | -21.7% |
+
+Tested LOC-Bench instances: Pydantic `pydantic__pydantic-10601`, SQLGlot
+`tobymao__sqlglot-4434`, and Prowler `prowler-cloud__prowler-6108`, five
+repetitions per instance and arm. Runs were serial with counterbalanced arm
+order, an isolated agent home, and no network; six invalid attempts were
+excluded and rerun. All three arms completed 15/15 tasks. An initial scorer
+reported 17 failures; a manual audit traced every one to implementation-
+mirroring checks rather than missing task behavior. Skill delivery showed the
+more stable savings; `AGENTS.md` delivery had better typical medians with
+heavier outlier tails.
 
 ## What it enforces
 
