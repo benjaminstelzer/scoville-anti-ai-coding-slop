@@ -108,7 +108,7 @@ Bound native inventory to the uncertainty that remains. When the request names
    bundle such precautionary discovery into another required command. Expand one
    evidence-driven step at a time only when targeted resolution fails, inspected
    source identifies another necessary owner or boundary, directives require it,
-   or focused validation cannot be determined. Once an exact path opens
+   or the decisive check cannot be determined. Once an exact path opens
    successfully, treat it as resolved: do not verify it with a filename search,
    and reread it unchanged only when your runtime's editing tool requires its
    own read first.
@@ -201,7 +201,7 @@ commands, files, helpers, or layers; stop when the owner and contract are clear.
 - Treat generated build or test artifacts as expected transient output: ignore
   or remove them once, keep them out of the final diff unless tracked, and do
   not start new searches because they appeared.
-- After decisive validation passes, run exactly one final inspection command,
+- After the decisive check passes, run exactly one final inspection command,
   then the single report. In a Git repository, that one command must bundle
   `git diff --check`, the scoped `git diff`, and `git status --short`; never run
   a separate diff or status command before or after it. Start another check
