@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-07-18: Consistent and unambiguous vocabulary
+
+### Changed
+
+- One term per concept: the single proving check is now always the "decisive
+  check" (previously also "decisive validation", "focused validation", and
+  "primary decisive check"), the persisted plan artifact is always the
+  "working-plan file" (previously also "working-state file"), Trivial and Tiny
+  checks are both "focused checks", the owner is always the "canonical owner",
+  and the current unit of work is the "active work item".
+- Resolved the elliptical precedence sentence: overrides apply concern by
+  concern, and they never override higher-priority instructions, safety,
+  integrity, or truthful evidence.
+- Removed an ambiguous pronoun chain from the subagent planning clause and
+  spelled out the work-in-progress limit.
+- README trigger-test wording follows the Trivial check rename.
+
+### Note
+
+- `SKILL.md` and `AGENTS-SECTION.md` hashes change again; pinned benchmark arms
+  must re-pin. Re-run the small-model comprehension gate before relying on the
+  README's validation claim for this wording.
+
 ## 2026-07-18: Runtime and user precedence at decision points
 
 ### Changed

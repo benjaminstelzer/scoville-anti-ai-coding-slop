@@ -12,8 +12,9 @@ description: >-
 # Scoville Engineering Gate
 
 Follow system, user, safety, runtime, and repository rules before this skill.
-Let user and repository rules override skill defaults concern by concern, never
-higher-priority instructions, safety, integrity, or truthful evidence.
+Let user and repository rules override skill defaults concern by concern;
+they never override higher-priority instructions, safety, integrity, or
+truthful evidence.
 
 Treat AI slop as motion without progress: drift from the request, tests instead
 of the feature, success claims without proof, or locally green changes that make
@@ -24,7 +25,7 @@ accumulating structural debt.
 
 - **Change:** Implement the requested change. Use this mode by default.
 - **Review:** Inspect and report; edit only when asked.
-- **Advisory:** Answer directly without a work plan or completion report.
+- **Advisory:** Answer directly without a work plan or final report.
 
 ## Workflow Inheritance
 
@@ -51,7 +52,7 @@ Preserve, in order:
 4. The fewest meaningful behavior-complete work items.
 5. Diff size and local convenience.
 
-Choose the smallest maintainable solution in the correct owner. Keep work items
+Choose the smallest maintainable solution in the canonical owner. Keep work items
 small enough to validate safely and large enough to deliver a coherent result.
 Do not split work merely to shrink diffs, tests, or reports.
 
@@ -63,7 +64,7 @@ dimension when present.
 ### Size
 
 - **Trivial:** One obvious edit with no behavior, contract, config, public-text,
-  generated-artifact, or structural effect. Inspect it and run a natural narrow
+  generated-artifact, or structural effect. Inspect it and run a natural focused
   check when one exists.
 - **Tiny:** One contained behavior or engineering-semantic change with no
   Structural or High flag. It may span its owner and directly related tests or
@@ -98,12 +99,12 @@ For each non-Trivial change:
    locations for directories you work in - such as a nested `AGENTS.md` - count
    as identified, not as discovery.
 2. Locate the source of truth, canonical owner, affected boundaries, relevant
-   tests, and decisive validation. Once source and directly relevant tests
+   tests, and the decisive check. Once source and directly relevant tests
    confirm the canonical owner, stop localization. Inspect additional consumers,
    manifests, configuration, or runtime files only when current evidence makes
    them necessary. For Tiny work with a known owner, use the direct path: inspect
-   owner and relevant test, reproduce when required, patch, run focused
-   validation, and inspect the diff.
+   owner and relevant test, reproduce when required, patch, run
+   the decisive check, and inspect the final diff.
 
 Bound native inventory to the uncertainty that remains. When the request names
    exact paths, open only those paths and inspect version-control status. When it
@@ -124,9 +125,9 @@ Bound native inventory to the uncertainty that remains. When the request names
    only when neither is available, and never beside another active planning
    mechanism.
 4. Pass the relevant structure checks and implement one behavior-complete work
-   item at a time. Treat this as a WIP limit, not a turn boundary; immediately
+   item at a time. Treat this as a work-in-progress limit, not a turn boundary; immediately
    continue with the next planned in-scope item after a validated checkpoint.
-5. Run the narrowest decisive validation, then broader checks required by the
+5. Run the narrowest decisive check, then broader checks required by the
    project or justified by a named Structural or High flag. Run broad suites
    once at a meaningful completion boundary unless changes invalidate them or
    the project requires otherwise.
@@ -143,12 +144,13 @@ Honor explicit user instructions about plan persistence and path. Otherwise
 prefer the planning mechanism your runtime provides in your current context,
 then the project's persistent planning mechanism when designated; the fallback
 below owns planning only when neither is available. A subagent that cannot
-reach its caller's planning mechanism treats it as unavailable: it plans
-ephemerally and returns plan-relevant state in its result, because persistence
-belongs to the caller; it persists its own working file only when its own work
-must survive compaction or handoff. If nothing specifies persistence, keep the
+reach its caller's planning mechanism treats that mechanism as unavailable,
+plans ephemerally, and returns plan-relevant state in its result, because
+persistence belongs to the caller; the subagent persists its own working-plan
+file only when its own work must survive compaction or handoff. If nothing specifies persistence, keep the
 fallback plan ephemeral when the work should finish within the current context.
-Persist it to exactly one working-state file only when the plan must survive
+Persist it to
+exactly one working-plan file only when the plan must survive
 likely context compaction or handoff and no available mechanism already
 preserves it - usually multi-item work unlikely to finish in the current
 context, especially long-running Structural or High work.
@@ -173,7 +175,7 @@ NOT DOING: <exclusions>
 OWNER: <canonical sources and owner>
 WORK ITEMS: [ ] 1. <behavior-complete result> - scope: <files> - proof: <check>
 ACTIVE: 1
-RISK: <structural/high flags, validation limits>
+RISK: <Structural/High flags, validation limits>
 ```
 
 Update the plan before a substantive scope change, not for incidental output.
@@ -187,7 +189,7 @@ commands, files, helpers, or layers; stop when the owner and contract are clear.
   directory only when inspected evidence names it as necessary, and do not
   reopen an unchanged file already inspected in this task unless your runtime's
   editing tool requires its own read first.
-- Run one primary decisive check that directly exercises the changed behavior.
+- Run one decisive check that directly exercises the changed behavior.
   A passing decisive check is terminal for that work item: do not run
   additional similar tests, inline harnesses, or confirmation reruns of the
   same behavior.
@@ -248,7 +250,7 @@ safety or integrity invariant.
 - **Owner:** Reuse the canonical pathway. Do not put feature policy in a generic
   adapter or bypass a shared invariant.
 - **Simplification:** Remove a branch, wrapper, or misplaced responsibility when
-  that directly supports the active result. `None needed` is valid; do not
+  that directly supports the active work item's result. `None needed` is valid; do not
   refactor merely to demonstrate simplification.
 - **Size:** Use the project's guard. Otherwise treat roughly 1,000 lines in a
   human-maintained implementation or high-value test file as a review signal,
@@ -319,7 +321,7 @@ owner, symbol, or path. Never load history wholesale.
 
 ## Edit Discipline
 
-- Change only the active result. Do not mix unrelated cleanup or weaken tests or
+- Change only the active work item's result. Do not mix unrelated cleanup or weaken tests or
   guards to obtain green output.
 - Touch generated files, lockfiles, migrations, vendored code, fixtures,
   snapshots, and release artifacts only when required; inspect every such hunk.

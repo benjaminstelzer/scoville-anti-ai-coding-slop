@@ -67,7 +67,7 @@ consult their documentation; paths differ per agent.
 *"Classify this change per Scoville: rename one purely local variable with no
 behavior or contract effect."* When neither user nor repository rules replace
 Scoville's classification, you should get **Trivial**: no plan, no new test, and
-one natural narrow check when one exists.
+one natural focused check when one exists.
 
 **What it costs.** `SKILL.md` currently contains roughly 2,600 words. A
 compatible agent loads the instructions when the skill triggers, although exact
@@ -120,7 +120,7 @@ mechanisms is in progress; results will be added here.
   completion.
 - **Proportionate process.** Changes are classified by size (Trivial / Tiny /
   Standard) and risk (Structural / High) independently. Trivial edits get one
-  narrow check when one exists, not a plan. Tests target defects, invariants,
+  focused check when one exists, not a plan. Tests target defects, invariants,
   and risky contracts rather than decorating a diff. Plans stay ephemeral by
   default; explicit user or project rules and long work that must survive
   context compaction can make them persistent.
