@@ -100,12 +100,10 @@ Code imports the file, so both tools read one shared copy.
 Do not install the skill and embed the section in the same project: one
 delivery mechanism is enough, and two copies can drift apart.
 
-`AGENTS-SECTION.md` is the complete, unshortened `SKILL.md` body with only the
-skill-specific parts adapted. The frontmatter is replaced by a scope sentence,
-and the self-references ("this skill") now point at the surrounding instruction
-file; the rules themselves are unchanged. It is regenerated from `SKILL.md`
-whenever the skill changes. A benchmark comparing both delivery mechanisms is
-in progress; results will be added here.
+`AGENTS-SECTION.md` contains the same rules as `SKILL.md`; only the packaging
+differs, so both delivery forms enforce identical behavior. The file is
+regenerated whenever `SKILL.md` changes. A benchmark comparing the two delivery
+mechanisms is in progress; results will be added here.
 
 ## What it enforces
 
