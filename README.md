@@ -118,9 +118,9 @@ Tested LOC-Bench instances: Pydantic `pydantic__pydantic-10601`, SQLGlot
 `tobymao__sqlglot-4434`, and Prowler `prowler-cloud__prowler-6108`, five
 repetitions per instance and arm. Runs were serial with counterbalanced arm
 order, an isolated agent home, and no network; six invalid attempts were
-excluded and rerun. All three arms completed 15/15 tasks. Skill delivery showed the more
-stable savings; `AGENTS.md` delivery had better typical medians with
-heavier outlier tails.
+excluded and rerun. All three arms completed 15/15 tasks. Skill delivery
+showed the more stable savings; `AGENTS.md` delivery had better typical
+medians with heavier outlier tails.
 
 ## What it enforces
 
