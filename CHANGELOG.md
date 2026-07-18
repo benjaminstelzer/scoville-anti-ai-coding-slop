@@ -1,5 +1,34 @@
 # Changelog
 
+## 2026-07-18: Runtime and user precedence at decision points
+
+### Changed
+
+- Planning resolves in order: user instructions, the planning mechanism the
+  runtime provides in the current context, the project's designated mechanism,
+  and only then the ephemeral fallback. The fallback never runs beside another
+  active planning mechanism, and the working file exists only when the plan
+  must survive compaction or handoff and no available mechanism already
+  preserves it.
+- Subagents that cannot reach their caller's planning mechanism plan
+  ephemerally and return plan-relevant state in their result; persistence
+  belongs to the caller.
+- Workflow inheritance names runtime-supplied rules and invoked skills as an
+  explicit tier between user instructions and repository conventions.
+- Rereading an unchanged file is allowed when the runtime's editing tool
+  requires its own read before an edit.
+- Directive files the runtime expects at standard locations for touched
+  directories, such as a nested `AGENTS.md`, count as identified rather than
+  discovery.
+- Tiny work skips a written plan unless the user or runtime requires one.
+- Creating `docs/engineering-decisions.md` defers to user or runtime approval
+  requirements for new files.
+
+### Note
+
+- `SKILL.md` and `AGENTS-SECTION.md` hashes change with this release; pinned
+  benchmark arms must re-pin their commit and hashes.
+
 ## 2026-07-18: Embeddable AGENTS.md delivery
 
 ### Added

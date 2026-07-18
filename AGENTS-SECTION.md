@@ -25,8 +25,10 @@ accumulating structural debt.
 Resolve each workflow concern separately in this order:
 
 1. Explicit instructions for the current request.
-2. Other repository directives and established project conventions.
-3. The compact Scoville default below for that still-unspecified concern.
+2. Rules and workflows your runtime supplies for the current task, including
+   invoked skills.
+3. Other repository directives and established project conventions.
+4. The compact Scoville default below for that still-unspecified concern.
 
 Include planning, work-item boundaries, continuation and stopping, testing,
 validation, decision records, reporting, and version control. Reuse project
@@ -59,7 +61,7 @@ dimension when present.
   check when one exists.
 - **Tiny:** One contained behavior or engineering-semantic change with no
   Structural or High flag. It may span its owner and directly related tests or
-  docs. Skip a written plan.
+  docs. Skip a written plan unless the user or your runtime requires one.
 - **Standard:** Several real concerns, substantive uncertainty, or no obvious
   owner. Use the fallback plan.
 
@@ -86,7 +88,9 @@ For each non-Trivial change:
    directive files or conventional workflow files. Read an additional exact
    directive path only when a current instruction identifies it or the active
    path enters an explicitly signaled new scope. Do not load optional history
-   during baseline discovery.
+   during baseline discovery. Directive files your runtime expects at standard
+   locations for directories you work in - such as a nested `AGENTS.md` - count
+   as identified, not as discovery.
 2. Locate the source of truth, canonical owner, affected boundaries, relevant
    tests, and decisive validation. Once source and directly relevant tests
    confirm the canonical owner, stop localization. Inspect additional consumers,
@@ -105,10 +109,14 @@ Bound native inventory to the uncertainty that remains. When the request names
    evidence-driven step at a time only when targeted resolution fails, inspected
    source identifies another necessary owner or boundary, directives require it,
    or focused validation cannot be determined. Once an exact path opens
-   successfully, treat it as resolved: do not verify it with a filename search or
-   reread it unchanged before editing.
-3. Plan Standard, Structural, or High work with the project's mechanism when
-   designated; otherwise use the ephemeral fallback below.
+   successfully, treat it as resolved: do not verify it with a filename search,
+   and reread it unchanged only when your runtime's editing tool requires its
+   own read first.
+3. Plan Standard, Structural, or High work with the planning mechanism your
+   runtime provides in your current context when one is available, then with
+   the project's mechanism when designated; use the ephemeral fallback below
+   only when neither is available, and never beside another active planning
+   mechanism.
 4. Pass the relevant structure checks and implement one behavior-complete work
    item at a time. Treat this as a WIP limit, not a turn boundary; immediately
    continue with the next planned in-scope item after a validated checkpoint.
@@ -125,13 +133,19 @@ decision is missing, the source materially contradicts the task, new authority
 is required, unrelated changes cannot be separated, or no safe approach remains.
 Ask one specific question only when no safe scoped interpretation exists.
 
-Honor explicit user instructions about plan persistence and path. Otherwise use
-the project's persistent planning mechanism when designated. If neither
-specifies persistence, keep the fallback plan ephemeral when the work should
-finish within the current context. Persist it to exactly one working-state file
-only when the plan must survive likely context compaction or handoff - usually
-multi-item work unlikely to finish in the current context, especially
-long-running Structural or High work.
+Honor explicit user instructions about plan persistence and path. Otherwise
+prefer the planning mechanism your runtime provides in your current context,
+then the project's persistent planning mechanism when designated; the fallback
+below owns planning only when neither is available. A subagent that cannot
+reach its caller's planning mechanism treats it as unavailable: it plans
+ephemerally and returns plan-relevant state in its result, because persistence
+belongs to the caller; it persists its own working file only when its own work
+must survive compaction or handoff. If nothing specifies persistence, keep the
+fallback plan ephemeral when the work should finish within the current context.
+Persist it to exactly one working-state file only when the plan must survive
+likely context compaction or handoff and no available mechanism already
+preserves it - usually multi-item work unlikely to finish in the current
+context, especially long-running Structural or High work.
 
 Use the project's preferred path or, when none exists, `PLAN.md` at the repository
 root. Reuse that file only when it is the active plan for the current work; never
@@ -165,7 +179,8 @@ commands, files, helpers, or layers; stop when the owner and contract are clear.
 - Localization ends when source confirms the canonical owner and one directly
   relevant test or focused check is identified. After that, open a new file or
   directory only when inspected evidence names it as necessary, and do not
-  reopen an unchanged file already inspected in this task.
+  reopen an unchanged file already inspected in this task unless your runtime's
+  editing tool requires its own read first.
 - Run one primary decisive check that directly exercises the changed behavior.
   A passing decisive check is terminal for that work item: do not run
   additional similar tests, inline harnesses, or confirmation reruns of the
@@ -280,7 +295,8 @@ When no project mechanism exists, record provenance in an already-authorized
 commit message or pull-request description when available. If no such artifact
 exists, or the record must remain discoverable in the working tree before commit
 or handoff, create or reuse `docs/engineering-decisions.md` on the first needed
-entry without separate approval. Store both material decisions and durable
+entry; this needs no separate approval unless the user or runtime requires
+approval for new files. Store both material decisions and durable
 implementation rationale there as distinct `D` and `R` entries. Mention creating
 the file in the final report and never create another fallback log.
 
