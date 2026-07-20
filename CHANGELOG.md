@@ -1,5 +1,56 @@
 # Changelog
 
+## 2026-07-20: Goal-first rewrite
+
+### Changed
+
+- Rebuilt the skill around one governing principle: after safety and explicit
+  constraints, optimize for the requested observable outcome. Correctness,
+  structure, and validation constrain delivery; they are no longer substitute
+  deliverables. This addresses the observed Goodhart failure where agents
+  optimized for tests, plans, and defensible process instead of product
+  progress.
+- Replaced size classification (Trivial/Tiny/Standard) with five modes:
+  Advisory, Review, Explore, Develop, and Harden. Structural and High risk
+  flags remain independent, and touching a central file, public API, or
+  existing test suite alone never escalates Develop to Harden.
+- Made validation decision-relevant: checks continue only while additional
+  evidence could plausibly change the implementation or completion decision.
+- A failed check is now presumed substantive and caused by the change unless
+  specific evidence shows it is pre-existing or environmental.
+- Two consecutive failed attempts against the same failing check stop patching
+  and require re-reading the owner contract and changing or narrowing the
+  approach.
+- Explore code kept beyond the experiment becomes Develop work and must meet
+  Develop validation before completion is claimed.
+- When the runtime requires its own plan while an authoritative project plan
+  exists, the runtime plan is a disposable mirror; the project plan remains
+  the only canonical state.
+- Handoffs across interruption, handoff, or compaction record only four
+  fields: requested outcome, current state, decisive evidence so far, and next
+  concrete step.
+- Material decisions form a boundary, not a gate: they are recorded in the
+  project's existing plan, ADR, decision-log, commit, or pull-request
+  mechanism, and ordinary implementation details are decided locally.
+
+### Removed
+
+- The automatic working-plan file (`PLAN.md` fallback) and the
+  `docs/engineering-decisions.md` fallback log. Scoville no longer creates any
+  artifact of its own.
+- The SC1-SC10 numbering. The hard integrity failures survive as a named list
+  (misleading wrappers, silent fallbacks, lossy projections, publication
+  before durable work, duplicate owners); maintainability smells became
+  review signals instead of automatic blockers.
+- README benchmark results and the small-model validation claim: they measured
+  the previous rule set and must be re-run against the goal-first version
+  before any efficiency claim returns.
+
+### Note
+
+- `AGENTS-SECTION.md` was regenerated from the new `SKILL.md`; only the
+  packaging differs. Both file hashes change; pinned arms must re-pin.
+
 ## 2026-07-18: Benchmark results in the README
 
 ### Added

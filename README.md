@@ -12,18 +12,18 @@ We have all seen it:
 - The diff is green, the PR merges, and the system is a little harder to
   understand than before.
 
-That is AI slop: motion without progress. Scoville is an Agent Skill that makes
-your coding agent prove its work, stay in scope, and keep the structure honest,
-without turning every one-line edit into a process. It also pays for itself: in
-a 45-run benchmark, Scoville cut total tokens by roughly 25 to 30 percent and
-agent time by about a sixth, at identical task quality.
+That is AI slop: motion without progress toward what you actually asked for.
+Scoville is an Agent Skill that keeps your coding agent optimizing for the
+requested observable outcome. Correctness, structure, and validation act as
+delivery constraints, not as substitute deliverables — so you get the behavior
+you asked for, proven honestly, without every one-line edit turning into a
+process.
 
 It targets both failure directions: unvalidated work, where success is claimed
-without evidence, and structural debt that hides behind green tests, such as
-duplicate ownership, lost boundary semantics, or progress published before the
-work is durable. It follows your rules and your repository's conventions
-concern by concern, then supplies compact, risk-proportionate defaults only
-where they are silent.
+without evidence, and process theater, where the agent produces tests, plans,
+refactors, and documentation instead of the requested behavior. It follows your
+rules and your repository's conventions concern by concern, then supplies
+compact defaults only where they are silent.
 
 ## Why "Scoville"?
 
@@ -32,10 +32,6 @@ before trained tasters could no longer detect the heat. AI slop works the same
 way in reverse: real engineering gets diluted with scaffolding, filler tests,
 and unproven claims until no actual progress is detectable. This skill measures,
 and limits, that dilution.
-
-The ten structural failure modes carry SC numbers (SC1-SC10). Here, SC stands
-for "structural concern." The more SC findings your diff collects, the more it
-burns on review.
 
 ## Install
 
@@ -66,23 +62,15 @@ For Claude Code, `<skills-dir>` is `~/.claude/skills/` for all projects or
 consult their documentation; paths differ per agent.
 
 **Verify it works.** Skills load on demand, so test the trigger. Ask your agent:
-*"Classify this change per Scoville: rename one purely local variable with no
-behavior or contract effect."* When neither user nor repository rules replace
-Scoville's classification, you should get **Trivial**: no plan, no new test, and
-one natural focused check when one exists.
+*"Per Scoville, which mode applies to renaming one purely local variable with no
+behavior or contract effect, and how should it be validated?"* When neither user
+nor repository rules replace Scoville's defaults, you should get **Develop**
+with at most one existing focused check: no plan, no new test, no broad suite.
 
-**What it costs.** `SKILL.md` currently contains roughly 2,600 words. A
+**What it costs.** `SKILL.md` currently contains roughly 1,700 words. A
 compatible agent loads the instructions when the skill triggers, although exact
 context accounting depends on the agent. Installing it per project limits where
 it is available; it does not reduce the cost of an individual invocation.
-
-**Small-model validation.** Scoville was tested against GPT-5.6 Luna at low
-reasoning in an isolated Codex environment, to check whether small models need
-extra rules. They do not: the unchanged skill identified all required Scoville
-concerns in 10/10 single-concern cases and 10/10 compound cases with two or
-three interacting concerns. These tests establish instruction comprehension before editing; they do
-not by themselves establish the quality of executable patches on real
-repositories.
 
 ## Use via AGENTS.md instead of a skill
 
@@ -101,49 +89,35 @@ instruction file: `AGENTS.md` for Codex, `CLAUDE.md` for Claude Code.
 
 `AGENTS-SECTION.md` contains the same rules as `SKILL.md`; only the packaging
 differs, so both delivery forms enforce identical behavior. The file is
-regenerated whenever `SKILL.md` changes. See [Benchmark](#benchmark) for the
-measured comparison of both delivery mechanisms.
-
-## Benchmark
-
-Paired medians against a native no-Scoville arm, agent `gpt-5.6-sol`, 45 valid
-runs:
-
-| Delivery | Total tokens | Uncached input | Cache-weighted cost | Action turns | Wall time |
-|---|---:|---:|---:|---:|---:|
-| Skill | -30.5% | -15.8% | -23.1% | -21.1% | -16.6% |
-| `AGENTS.md` | -31.3% | -20.4% | -27.1% | -33.3% | -21.7% |
-
-Tested LOC-Bench instances: Pydantic `pydantic__pydantic-10601`, SQLGlot
-`tobymao__sqlglot-4434`, and Prowler `prowler-cloud__prowler-6108`, five
-repetitions per instance and arm. Runs were serial with counterbalanced arm
-order, an isolated agent home, and no network; six invalid attempts were
-excluded and rerun. All three arms completed 15/15 tasks. Skill delivery
-showed the more stable savings; `AGENTS.md` delivery had better typical
-medians with heavier outlier tails.
+regenerated whenever `SKILL.md` changes.
 
 ## What it enforces
 
-- **Evidence over claims.** Every validation claim needs the actual check,
-  outcome, and proof. Commands include their exit code. `NOT RUN` is a valid
-  report for a relevant expected check; invented output never is. Green tests
-  alone do not approve structure.
-- **Scope discipline.** One behavior-complete work item at a time, the fewest
-  items the outcome needs, no unrelated cleanup, and a full final-diff
-  inspection before completion. Stopping requires a real stop condition, not
-  just a finished sub-step.
-- **Structural honesty.** Ten named failure modes (SC1-SC10) cover misleading
-  wrappers, silent fallbacks, lossy boundaries, state published before durable
-  work, duplicate pathways, responsibility growth, speculative abstraction,
-  mode creep, implementation-mirroring tests, and scaffolding presented as
-  completion. Introduced findings block
-  completion.
-- **Proportionate process.** Changes are classified by size (Trivial / Tiny /
-  Standard) and risk (Structural / High) independently. Trivial edits get one
-  focused check when one exists, not a plan. Tests target defects, invariants,
-  and risky contracts rather than decorating a diff. Plans stay ephemeral by
-  default; explicit user or project rules and long work that must survive
-  context compaction can make them persistent.
+- **Goal-first delivery.** After safety and explicit constraints, the agent
+  optimizes for the requested observable outcome. When work starts producing
+  only tests, process artifacts, documentation, or internal cleanup without
+  advancing the outcome or closing a named risk, that line of work stops.
+- **Evidence over claims.** Validation continues exactly as long as another
+  check could plausibly change the implementation or completion decision, and
+  behavior that was not observed is never claimed. A failed check is presumed
+  substantive and caused by the change unless specific evidence shows it is
+  pre-existing or environmental, and two consecutive failed attempts against
+  the same failing check force a change of approach instead of a third blind
+  patch.
+- **Modes instead of one ceremony.** Advisory, Review, Explore, Develop, and
+  Harden separate answering, inspecting, experimenting, ordinary delivery, and
+  release gating. Touching a central file, public API, or existing test suite
+  alone never escalates Develop to Harden, and prototype code kept beyond an
+  experiment must meet Develop validation before completion is claimed.
+- **A hard integrity floor.** Misleading wrappers, silent fallbacks, lossy
+  projections, progress published before the work is durable, and duplicate
+  owners that bypass canonical invariants are never introduced. Maintainability
+  smells are review signals resolved when the active change worsens them
+  materially, not automatic blockers.
+- **No artifact economy.** No automatic plan files or decision logs. Material
+  decisions go into the project's existing plan, ADR, or pull-request
+  mechanism; a handoff across interruption or compaction records only the
+  requested outcome, current state, decisive evidence, and next concrete step.
 
 The full rules live in [SKILL.md](SKILL.md).
 
@@ -154,33 +128,23 @@ useful behavior fits in the instruction file.
 
 The skill does not replace your instructions, architecture docs, CI, security
 policy, release workflow, or human review. It resolves every workflow concern
-in a fixed order: explicit user instruction first, then repository convention,
-then its own default. This lets it fill gaps instead of fighting your
-`AGENTS.md`. A project convention can replace any Scoville default, but it can
-never justify fabricated evidence or weakened guards.
+in a fixed order: explicit instructions for the current request, current
+runtime requirements, repository directives and conventions, then its own
+default. This lets it fill gaps instead of fighting your `AGENTS.md`. A project
+convention can replace any Scoville default, but it can never justify
+fabricated evidence or weakened guards.
 
-Two mechanisms handle long-running work: working plans and decision records.
-When a multi-item plan must survive context compaction or handoff and the
-project provides no mechanism, Scoville maintains one working-plan file,
-re-reads canonical sources before the plan after resuming, and removes the file
-at completion only when Scoville created it and neither the user nor repository
-requires retention. The file stays uncommitted unless the user or repository
-tracks plans.
-
-Material decisions leave a record. When an agent picks an owner, cuts scope,
-changes a contract, or accepts a validation limit, that reasoning normally dies
-with the session; the next agent or reviewer then re-litigates the choice or
-quietly reverses it. Scoville therefore records material decisions, and it
-records them where your project already does: an existing decision workflow
-such as ADRs or a design log is used as is, never replaced by a parallel one.
-Without such a mechanism, an authorized commit message or pull-request
-description carries the record. Only when neither works, or the record must
-stay visible in the working tree before a commit exists, does Scoville create
-`docs/engineering-decisions.md` as its single fallback log, announcing the new
-file in the final report. If that file shows up in a diff, the fallback did its
-job; designate your own mechanism and it will be used instead. The log is
-provenance, not authority: current behavior lives in code, schemas, and config,
-and the log only explains why.
+Earlier versions maintained their own working-plan file, decision log, and
+completion templates. Practical use exposed the Goodhart failure in that
+design: agents increasingly optimized for producing plans, tests, and
+defensible process instead of advancing the requested outcome. The current
+goal-first version therefore creates no artifacts of its own. If a repository
+designates an authoritative plan, that plan is the sole planning state; a
+runtime that requires its own plan tool receives only a disposable mirror of
+it. Material decisions — changes to outcome, scope, ownership, public
+contracts, data or security posture, reversibility, or validation limits — are
+recorded in the mechanisms your project already has, never in a new parallel
+one.
 
 ## Sources and inspirations
 
@@ -202,6 +166,11 @@ Minimal single-skill repo: `SKILL.md`, the embeddable `AGENTS-SECTION.md`
 variant, agent metadata (`agents/openai.yaml`), changelog, and license. No
 bundled scripts, references, assets, runtime dependencies, or stack-specific
 rules.
+
+Benchmark and small-model validation results published for earlier versions
+were removed from this README: they measured the previous rule set and will be
+re-run against the current goal-first rules before any efficiency claim
+returns.
 
 ## License
 

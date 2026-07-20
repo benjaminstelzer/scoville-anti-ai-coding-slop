@@ -1,4 +1,4 @@
 interface:
-  display_name: "Scoville Engineering Gate"
-  short_description: "Adaptive engineering quality and structure gate"
-  default_prompt: "Use $scoville-anti-ai-coding-slop to follow the project workflow while applying risk-proportionate structural, safety, and validation safeguards."
+  display_name: "Scoville Engineering Guardrail"
+  short_description: "Goal-first engineering guardrail against AI coding slop"
+  default_prompt: "Use $scoville-anti-ai-coding-slop to deliver the requested observable outcome while preserving safety, canonical ownership, boundary semantics, and truthful evidence."
