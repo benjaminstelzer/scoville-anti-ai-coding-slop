@@ -2,7 +2,7 @@
 name: scoville-anti-ai-coding-slop
 description: >-
   Goal-first engineering guardrail for agent-assisted planning, implementation,
-  fixes, refactors, tests, reviews, and removals. Use whenever Codex changes or
+  fixes, refactors, tests, reviews, and removals. Use whenever the agent changes or
   reviews code or engineering artifacts. Preserve safety, data integrity,
   canonical ownership, boundary semantics, and truthful evidence while keeping
   development focused on the requested observable outcome instead of process,
