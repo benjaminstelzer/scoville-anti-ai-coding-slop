@@ -15,7 +15,7 @@ We have all seen it:
 That is AI slop: motion without progress toward what you actually asked for.
 Scoville is an Agent Skill that keeps your coding agent optimizing for the
 requested observable outcome. Correctness, structure, and validation act as
-delivery constraints, not as substitute deliverables — so you get the behavior
+delivery constraints, not as substitute deliverables, so you get the behavior
 you asked for, proven honestly, without every one-line edit turning into a
 process.
 
@@ -141,8 +141,8 @@ defensible process instead of advancing the requested outcome. The current
 goal-first version therefore creates no artifacts of its own. If a repository
 designates an authoritative plan, that plan is the sole planning state; a
 runtime that requires its own plan tool receives only a disposable mirror of
-it. Material decisions — changes to outcome, scope, ownership, public
-contracts, data or security posture, reversibility, or validation limits — are
+it. Material decisions, meaning changes to outcome, scope, ownership, public
+contracts, data or security posture, reversibility, or validation limits, are
 recorded in the mechanisms your project already has, never in a new parallel
 one.
 
