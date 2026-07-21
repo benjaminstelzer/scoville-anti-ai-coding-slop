@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-07-21: Restore validation stop semantics
+
+### Changed
+
+- Limit an infrastructure failure to one different substitute check; if that
+  cannot demonstrate the behavior, stop and report it as unverified instead of
+  probing additional runners, environments, or dependency paths.
+- Make decisive evidence terminal for the behavior unless a separate changed
+  behavior, named risk, or higher-priority requirement remains unverified.
+- Require one coherent final Git inspection after validation. A new validation
+  and inspection round opens only when that inspection exposes a concrete
+  defect that is then fixed.
+- Keep `SKILL.md` and `AGENTS-SECTION.md` behaviorally identical.
+
 ## 2026-07-20: Goal-first rewrite
 
 ### Changed

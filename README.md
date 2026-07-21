@@ -101,9 +101,11 @@ regenerated whenever `SKILL.md` changes.
   check could plausibly change the implementation or completion decision, and
   behavior that was not observed is never claimed. A failed check is presumed
   substantive and caused by the change unless specific evidence shows it is
-  pre-existing or environmental, and two consecutive failed attempts against
-  the same failing check force a change of approach instead of a third blind
-  patch.
+  pre-existing or environmental. An infrastructure failure permits one
+  different substitute check rather than an environment-probing loop. Decisive
+  evidence ends validation for that behavior and leads to one coherent final
+  Git inspection. Two consecutive failed attempts against the same substantive
+  check force a change of approach instead of a third blind patch.
 - **Modes instead of one ceremony.** Advisory, Review, Explore, Develop, and
   Harden separate answering, inspecting, experimenting, ordinary delivery, and
   release gating. Touching a central file, public API, or existing test suite
