@@ -191,19 +191,25 @@ completion decision.
 
 Classify a failed check before reacting. Treat it as substantive and caused by
 the change unless specific evidence shows that it is pre-existing or
-environmental. Fix substantive failures caused by the change. For
-infrastructure failures, use the narrowest available substitute and report what
-remains unverified. Do not rerun an unchanged command unless repetition itself
-is part of a named concurrency, stochastic, flaky-test, or project validation
-protocol.
+environmental. Fix substantive failures caused by the change. For an
+infrastructure failure, make at most one substitute attempt: use the narrowest
+different check that can still exercise the changed behavior. If it cannot run
+or cannot demonstrate the behavior, stop validation for that behavior and
+report it as unverified; do not probe another runner, environment, dependency
+path, or equivalent substitute. Do not rerun an unchanged command unless
+repetition itself is part of a named concurrency, stochastic, flaky-test, or
+project validation protocol.
 
 If two consecutive attempts fail to fix the same failing check, stop patching:
 re-read the owner's contract and the failing evidence, then change the approach
 or narrow the change before editing again.
 
-Do not add similar checks after decisive evidence passes. Do not fix unrelated
-suite failures unless they block the requested outcome or the user expands the
-scope. Never claim behavior that was not observed.
+After decisive evidence passes for a behavior, run no broader, repeated, or
+similar check for that behavior. Proceed to final inspection unless a separate
+changed behavior, named risk, or higher-priority requirement remains
+unverified. Do not fix unrelated suite failures unless they block the requested
+outcome or the user expands the scope. Never claim behavior that was not
+observed.
 
 ## Inspect and complete
 
@@ -215,10 +221,12 @@ Before completion:
 4. confirm no integrity failure listed above was introduced;
 5. state any material unverified behavior or residual risk.
 
-In Git, obtain a coherent final snapshot containing `git diff --check`, the
-complete scoped diff, and `git status --short`. Inspect omitted untracked content
-or truncated output separately when necessary; command-count ritual is not the
-goal.
+After validation is complete, run one coherent final Git inspection containing
+`git diff --check`, the complete scoped diff, and `git status --short`. Do not
+split that inspection into separate commands or follow it with another test,
+lint, diff, or status command unless the inspection reveals a new concrete
+defect. If that defect is fixed, validate only the affected behavior and run
+one new coherent final inspection.
 
 Report the result once: lead with the observable behavior delivered, name the
 decisive checks and outcomes, and mention only remaining work or risk that could
