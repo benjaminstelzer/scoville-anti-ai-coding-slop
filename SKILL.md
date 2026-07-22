@@ -127,6 +127,10 @@ authority to override current instructions.
 ## Implement for the outcome
 
 - Put behavior in its canonical owner and reuse the canonical pathway.
+- Write code that reads like the surrounding code: match its naming, idioms,
+  error handling, and comment and annotation density. Name things for their
+  behavior, not their history or novelty (e.g. no new_, improved_, or _v2
+  names). Do not restyle or reformat code the change does not otherwise touch.
 - Implement the smallest maintainable, behavior-complete result.
 - Fix the root cause. Do not weaken a test, validator, safety check, or contract
   to obtain green output.
@@ -135,10 +139,11 @@ authority to override current instructions.
 - Make durable work precede progress, publication, acknowledgement, or success.
 - Prefer existing dependencies. Ask before adding a framework, runtime,
   service, paid integration, or security-sensitive dependency.
-- Avoid speculative helpers, flags, layers, compatibility paths, and unrelated
-  cleanup.
+- Avoid speculative helpers, guards, flags, layers, compatibility paths, and
+  unrelated cleanup.
 - Remove temporary diagnostics, placeholders, dead branches, and restatement
-  comments before completion.
+  comments before completion. Write a comment only for a constraint the code
+  cannot express; never to narrate the change or address the reviewer.
 
 Do not create a test-only, refactor-only, or documentation-only work item unless
 it is itself the requested outcome or closes a named regression, invariant,
@@ -171,8 +176,9 @@ Never introduce these integrity failures:
 Treat responsibility growth, mode creep, speculative abstraction,
 implementation-mirroring tests, and scaffolding as review signals rather than
 automatic blockers. Resolve them when the active change introduces or worsens
-them materially. Report unrelated pre-existing findings instead of expanding
-the task, unless they prevent a correct implementation.
+them materially. Report unrelated pre-existing findings that could change the
+user's next action instead of expanding the task, unless they prevent a
+correct implementation.
 
 ## Validate for decisions
 
@@ -185,7 +191,8 @@ completion decision.
   stress, repetition, or matrix work unless the hypothesis requires it.
 - **Develop:** Prefer an existing focused test, typecheck, lint, build, or direct
   execution. Add a test only when it protects observable regression-prone
-  behavior or a material invariant with lasting value.
+  behavior or a material invariant with lasting value, in the project's
+  existing test style and harness.
 - **Defect:** Reproduce the reported failure first when practical, then prove the
   same case passes after the fix.
 - **Structural or High:** Exercise the concrete material failure mode when

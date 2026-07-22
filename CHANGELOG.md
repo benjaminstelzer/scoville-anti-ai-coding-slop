@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-07-22: Code style follows the surrounding code
+
+### Added
+
+- Implementation rule: write code that reads like the surrounding code — match
+  its naming, idioms, error handling, and comment and annotation density; name
+  things for their behavior, not their history or novelty (e.g. no new_,
+  improved_, or _v2 names); never restyle or reformat code the change does not
+  otherwise touch.
+- Comment rule: write a comment only for a constraint the code cannot express,
+  never to narrate the change or address the reviewer.
+- New tests follow the project's existing test style and harness.
+- Speculative guards join the speculative-scaffolding list, covering
+  defensive clutter the project does not practice.
+
+### Changed
+
+- Unrelated pre-existing findings are reported only when they could change the
+  user's next action. This closes a report-padding loophole where listing
+  trivial pre-existing smells could substitute for progress.
+
+### Note
+
+- `AGENTS-SECTION.md` was regenerated with the same edits; both file hashes
+  change and pinned benchmark arms must re-pin.
+
 ## 2026-07-21: Restore validation stop semantics
 
 ### Changed
