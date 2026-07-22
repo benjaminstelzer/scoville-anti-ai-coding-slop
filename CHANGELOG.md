@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-07-22: Compaction-safe handoff record
+
+### Changed
+
+- The handoff record now carries the requested outcome's binding constraints
+  and any unrecorded material decision that affects future work. This closes
+  the loss of scope prohibitions across compaction and resolves the literal
+  conflict between the four-field cap and the Material decisions clause.
+- Restored the resume rule lost in the goal-first rewrite: a resuming agent
+  treats the record as a snapshot, re-reads the applicable instructions,
+  inspects current version-control state, and reconciles any mismatch before
+  continuing.
+
+### Note
+
+- `AGENTS-SECTION.md` carries identical edits; both file hashes change and
+  pinned benchmark arms must re-pin.
+
 ## 2026-07-22: Code style follows the surrounding code
 
 ### Added

@@ -84,8 +84,11 @@ at a time and continue to the next in-scope item without treating every
 checkpoint as a separate task.
 
 When work will resume after interruption, handoff, or compaction, record in the
-available mechanism only the requested outcome, current state, decisive
-evidence so far, and next concrete step.
+available mechanism only the requested outcome with its binding constraints,
+current state, decisive evidence so far, next concrete step, and any unrecorded
+material decision that affects future work. When resuming from such a record,
+treat it as a snapshot: re-read the applicable instructions, inspect current
+version-control state, and reconcile any mismatch before continuing.
 
 ## Material decisions
 
