@@ -17,7 +17,8 @@ Scoville is an Agent Skill that keeps your coding agent optimizing for the
 requested observable outcome. Correctness, structure, and validation act as
 delivery constraints, not as substitute deliverables, so you get the behavior
 you asked for, proven honestly, without every one-line edit turning into a
-process.
+process. A one-line fix should not arrive wrapped in a seven-section plan. It
+has, historically.
 
 It targets both failure directions: unvalidated work, where success is claimed
 without evidence, and process theater, where the agent produces tests, plans,
@@ -31,7 +32,8 @@ The original Scoville test measured how far chili extract could be diluted
 before trained tasters could no longer detect the heat. AI slop works the same
 way in reverse: real engineering gets diluted with scaffolding, filler tests,
 and unproven claims until no actual progress is detectable. This skill measures,
-and limits, that dilution.
+and limits, that dilution. It is the one Scoville scale where you want the
+heat.
 
 ## Install
 
@@ -139,7 +141,9 @@ fabricated evidence or weakened guards.
 Earlier versions maintained their own working-plan file, decision log, and
 completion templates. Practical use exposed the Goodhart failure in that
 design: agents increasingly optimized for producing plans, tests, and
-defensible process instead of advancing the requested outcome. The current
+defensible process instead of advancing the requested outcome. The anti-slop
+skill had started producing slop of its own, which was at least on topic. The
+current
 goal-first version therefore creates no artifacts of its own. If a repository
 designates an authoritative plan, that plan is the sole planning state; a
 runtime that requires its own plan tool receives only a disposable mirror of
@@ -172,7 +176,8 @@ rules.
 Benchmark and small-model validation results published for earlier versions
 were removed from this README: they measured the previous rule set and will be
 re-run against the current goal-first rules before any efficiency claim
-returns.
+returns. Quoting them anyway would have been exactly the kind of claim this
+skill exists to stop.
 
 ## License
 
